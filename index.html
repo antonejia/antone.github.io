@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/21/工作遇到问题记录/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/技术/前端/遍历数组&对象的几种方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -298,7 +298,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/21/工作遇到问题记录/" itemprop="url">工作遇到的问题</a></h1>
+                <a class="post-title-link" href="/2019/07/28/技术/前端/遍历数组&对象的几种方式/" itemprop="url">ES6遍历数组&对象的几种方式</a></h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T11:05:46+08:00">
-                2018-01-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-28T22:17:26+08:00">
+                2019-07-28
               </time>
             
 
@@ -333,8 +333,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂七杂八/" itemprop="url" rel="index">
-                    <span itemprop="name">杂七杂八</span>
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -372,8 +372,11 @@
       
         
           
-            <h2 id="web-rest接口-反序列化失败"><a href="#web-rest接口-反序列化失败" class="headerlink" title="web rest接口 反序列化失败"></a>web rest接口 反序列化失败</h2><p>现象：逻辑层没任何问题，对象成功返回，但在rest请求，浏览器端反序列化时失败，报错 json serialize error</p>
-<p>原因：返回对象中Map属性的key为整型导致<br><a href="https://github.com/alibaba/fastjson/issues/53" target="_blank" rel="noopener">https://github.com/alibaba/fastjson/issues/53</a><br><a href="https://github.com/alibaba/fastjson/issues/294" target="_blank" rel="noopener">https://github.com/alibaba/fastjson/issues/294</a></p>
+            <h3 id="遍历数组的几种方式"><a href="#遍历数组的几种方式" class="headerlink" title="遍历数组的几种方式"></a>遍历数组的几种方式</h3><p>方式1：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>];</span><br><span class="line"></span><br><span class="line">arr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">element, index</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(element); <span class="comment">// red green blue</span></span><br><span class="line">  <span class="built_in">console</span>.log(index);   <span class="comment">// 0 1 2</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>方式2 &amp; 方式3：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> a <span class="keyword">in</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">// 0 1 2 3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> a <span class="keyword">of</span> arr) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">// a b c d</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="遍历对象的几种方式"><a href="#遍历对象的几种方式" class="headerlink" title="遍历对象的几种方式"></a>遍历对象的几种方式</h3><p>方式1：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj =&#123;<span class="string">"a"</span>:<span class="string">"a1"</span>, <span class="string">"b"</span>: <span class="string">"b1"</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> x <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// a, b</span></span><br><span class="line">  <span class="built_in">console</span>.log(obj[x]); <span class="comment">//a1, b1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方式2：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;<span class="string">"a"</span>:<span class="string">"a1"</span>, <span class="string">"b"</span>: <span class="string">"b1"</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key); <span class="comment">// a, b</span></span><br><span class="line">  <span class="built_in">console</span>.log(obj[key]); <span class="comment">//a1, b1</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -422,7 +425,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/21/JVM/内存模型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/26/工作/工作方法&j技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -441,7 +444,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/21/JVM/内存模型/" itemprop="url">Java内存模型</a></h1>
+                <a class="post-title-link" href="/2019/07/26/工作/工作方法&j技巧/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -453,8 +456,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T10:57:22+08:00">
-                2018-01-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-26T13:21:35+08:00">
+                2019-07-26
               </time>
             
 
@@ -463,28 +466,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -515,156 +496,14 @@
       
         
           
-            <p><a href="http://www.infoq.com/cn/articles/java-memory-model-1?utm_source=infoq&amp;utm_medium=related_content_link&amp;utm_campaign=relatedContent_articles_clk" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/java-memory-model-1?utm_source=infoq&amp;utm_medium=related_content_link&amp;utm_campaign=relatedContent_articles_clk</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/21/Linux/cpu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AntoneJia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HEXO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/21/Linux/cpu/" itemprop="url">cpu问题排查</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T10:53:06+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="top"><a href="#top" class="headerlink" title="top"></a>top</h2><ul>
-<li>键入P (大写p)，线程按照CPU使用率排序</li>
-<li>键入M (大写m)，线程按照内存使用率排序</li>
+            <p>时刻保持结果意识：</p>
+<ul>
+<li>做事情不要修修补补，要有一整块的事情，先想这个事情如果做完会带来什么样的结果，你就会有个衡量。否则，你做的事情可能没有任何意义，徒劳无功</li>
 </ul>
-<p>cpu问题排查文章引用</p>
-<blockquote>
-<p><a href="https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960332&amp;idx=1&amp;sn=63cb23e04ac4bf926434f34001c0718a&amp;chksm=bd2d01d08a5a88c6a01e62533162cc3535defb37cefa61a800e405edda8240ad17432e023d53&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&amp;mid=2651960332&amp;idx=1&amp;sn=63cb23e04ac4bf926434f34001c0718a&amp;chksm=bd2d01d08a5a88c6a01e62533162cc3535defb37cefa61a800e405edda8240ad17432e023d53&amp;scene=21#wechat_redirect</a></p>
-</blockquote>
+<p>改变工作方法：</p>
+<ul>
+<li>创新和突破才是老板们要看到的。仅仅完成工作1，工作2，没有太大意义。所以，工作要有“巧”劲儿，“”</li>
+</ul>
 
           
         
@@ -713,7 +552,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/21/JVM/常用JVM命令/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/技术/学习方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -732,7 +571,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/21/JVM/常用JVM命令/" itemprop="url">常用JVM命令</a></h1>
+                <a class="post-title-link" href="/2019/07/13/技术/学习方法/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -744,8 +583,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T10:27:02+08:00">
-                2018-01-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-13T20:13:10+08:00">
+                2019-07-13
               </time>
             
 
@@ -754,28 +593,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -806,9 +623,7 @@
       
         
           
-            <h2 id="查看JVM堆分配情况"><a href="#查看JVM堆分配情况" class="headerlink" title="查看JVM堆分配情况"></a>查看JVM堆分配情况</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap -heap $&#123;pid&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="查看JVM各区使用情况"><a href="#查看JVM各区使用情况" class="headerlink" title="查看JVM各区使用情况"></a>查看JVM各区使用情况</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jstat -gcutil $&#123;pid&#125;   </span><br><span class="line"></span><br><span class="line">pid：java进程的pid</span><br></pre></td></tr></table></figure>
-<h2 id="找到最耗内存的对象"><a href="#找到最耗内存的对象" class="headerlink" title="找到最耗内存的对象"></a>找到最耗内存的对象</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap -histo:live $&#123;pid&#125; | more</span><br></pre></td></tr></table></figure>
+            <p><img src="assets/markdown-img-paste-20190713201313695.png" alt=""></p>
 
           
         
@@ -857,7 +672,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/20/Linux/awk/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/13/技术/从0开始学大数据/Hadoop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -876,7 +691,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/20/Linux/awk/" itemprop="url">AWK</a></h1>
+                <a class="post-title-link" href="/2019/07/13/技术/从0开始学大数据/Hadoop/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -888,8 +703,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-20T22:59:44+08:00">
-                2018-01-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-13T20:03:26+08:00">
+                2019-07-13
               </time>
             
 
@@ -898,28 +713,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -950,7 +743,16 @@
       
         
           
-            <p><a href="https://coolshell.cn/articles/9070.html" target="_blank" rel="noopener">https://coolshell.cn/articles/9070.html</a></p>
+            <p>大数据知识体系中的很多技术都是基于“一主多从”的架构</p>
+<ul>
+<li>HDFS：一个NameNode（资源元数据管理节点），多个DataNode（实际存储数据的节点）</li>
+<li>MapReduce：一个JobTracker（任务调度/分发节点），多个TaskTracker（任务执行节点）</li>
+<li>YARN：一个ResourceManager，多个NodeManager</li>
+<li>Storm：一个Nimbus，多个Supervisor</li>
+<li><p>Spark：一个Master，多个Slave</p>
+<p>我们从 Hadoop 中可以学到大数据领域的一个架构模式，也就是集中管理，分布存储与计算</p>
+</li>
+</ul>
 
           
         
@@ -999,7 +801,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/20/Linux/linux命令实战/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/生活/日记/2019.07.06(晋升通过面谈)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -1018,7 +820,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/20/Linux/linux命令实战/" itemprop="url">Linux命令实战</a></h1>
+                <a class="post-title-link" href="/2019/07/07/生活/日记/2019.07.06(晋升通过面谈)/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -1030,8 +832,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-20T22:38:03+08:00">
-                2018-01-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-07T23:23:15+08:00">
+                2019-07-07
               </time>
             
 
@@ -1040,28 +842,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1092,12 +872,9 @@
       
         
           
-            <h2 id="文本某列去重并求频次"><a href="#文本某列去重并求频次" class="headerlink" title="文本某列去重并求频次"></a>文本某列去重并求频次</h2><p>groupby 并count</p>
-<blockquote>
-<p>cat text.log | awk ‘{a[$1]++}END {for(i in a){print i, a[i]}}’| sort  -r -k 2</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sort -k POS1[,POS2]</span><br><span class="line"></span><br><span class="line">标识按哪列进行排序</span><br><span class="line"></span><br><span class="line">-r 代表倒序排</span><br></pre></td></tr></table></figure>
-<p>解法二：<a href="http://www.cnblogs.com/wangyuebo/p/5904581.html" target="_blank" rel="noopener">http://www.cnblogs.com/wangyuebo/p/5904581.html</a></p>
+            <p>思考：<br>    晋升沟通过了。但你的成长到底是什么，如果回答不上来就没有认识自己，也就是糊涂的。当时卡瓦沟通的时候明显感觉自己回答不上来</p>
+<p><strong>工作的心态和面貌很重要</strong>。这次老大又说到去年你的抗压能力不足。所以，你现在的精神面貌是不好的，没有人会愿意和你这样合作，继续下去也没有人愿意挺你</p>
+<p>不要轻易承认自己的不足</p>
 
           
         
@@ -1146,7 +923,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/20/Linux/Linux命令基础知识/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/生活/日记/2019.07.07(工作-居安思危)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -1165,7 +942,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/20/Linux/Linux命令基础知识/" itemprop="url">Linux命令基础知识</a></h1>
+                <a class="post-title-link" href="/2019/07/07/生活/日记/2019.07.07(工作-居安思危)/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -1177,8 +954,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-20T22:00:22+08:00">
-                2018-01-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-07T23:08:01+08:00">
+                2019-07-07
               </time>
             
 
@@ -1187,28 +964,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1239,12 +994,10 @@
       
         
           
-            <h2 id="反引号"><a href="#反引号" class="headerlink" title="反引号"></a>反引号</h2><p>反引号的作用就是将反引号内的Linux命令先执行，然后将执行结果赋予变量。尽管可以通过输入字符或者字符串来创建变量值，也可以获取来自于其他Linux命令的值。为把Linux命令的结果赋予变量，实现需要执行这个命令。如果在命令行上把Linux命令放在反引号中，这个命令会首先被执行，其结果会成为命令行的一个参数。在赋值时，通过把命令放在反引号中，以便于首先执行，命令的执行结果会被赋予一个变量。反引号可以被视为由要执行命令组成的表达式，其结果会被赋予变量。组成命令的字符本身不会被赋予。在下面的范例中，命令ls *.c被执行，其结果然后被赋予变量listc。ls *.c会生成具有.c扩展名的所有文件列表。这个文件列表随后被赋予变量listc。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> listc=`ls *.c`  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="variable">$listc</span>  </span></span><br><span class="line">main.c prog.c lib.c</span><br></pre></td></tr></table></figure>
-<p>实际工作实践中，直接登录线上应用的某台机器</p>
-<blockquote>
-<p>ssh `getvalue mbaprodserver | awk -F “ “ ‘{print $1}’`</p>
-</blockquote>
+            <h2 id="自知之明"><a href="#自知之明" class="headerlink" title="自知之明"></a>自知之明</h2><p>首先，你要清楚一点，你的技术能力还是挺差的。当别人跟你讨论一项技术的时候，你内心在害怕，在退缩。</p>
+<p>你想想，什么是你的饭碗，是技术能力。业务不能说不重要，但更重要的是技术，技术才是你的安身之本。</p>
+<h2 id="想清楚自己的方向"><a href="#想清楚自己的方向" class="headerlink" title="想清楚自己的方向"></a>想清楚自己的方向</h2><p>阿玺的分享（05.05中）说过：你的职业规划到底是什么，你现在所处的领域是不是你想要的，你喜欢什么？你擅长什么？你要什么？最后要放弃什么？这是每个人都值得思考的几个问题。</p>
+<p>至今，我回答不清楚。</p>
 
           
         
@@ -1293,7 +1046,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/生活/2018-18-14/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/生活/日记/2019.07.01(社交)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -1312,7 +1065,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/14/生活/2018-18-14/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2019/07/01/生活/日记/2019.07.01(社交)/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -1324,8 +1077,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-14T16:15:31+08:00">
-                2018-01-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-01T18:14:21+08:00">
+                2019-07-01
               </time>
             
 
@@ -1334,28 +1087,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1386,10 +1117,136 @@
       
         
           
-            <p>  昨晚得知奶奶生病住院了，毫无征兆的头晕，轻度昏迷，原因还在诊查中。猛然才意识到奶奶老了。</p>
-<p>  母亲的操劳又多了一些。她是这个家庭的主心骨，做人做事要求自己周全，要照顾到整家人的想法和感受，儿子们、丈夫的生活方方面面念在心里，妯娌间关系处处以和为贵。这些年，也是操碎了心。近日看到母亲眉头紧锁，面容又苍老了些，猛然才意识到母亲也老了。</p>
-<p>  远在他乡，家中的一切无法照顾得到，只有在每周固定的电话中嘘寒问暖。</p>
-<p>  坚强，是我从母亲身上看到的，也是我需要学习的最大优点。</p>
+            <h4 id="为什么跟老大在一起不自在"><a href="#为什么跟老大在一起不自在" class="headerlink" title="为什么跟老大在一起不自在"></a>为什么跟老大在一起不自在</h4><pre><code>没想法。什么事儿。问个为什么
+没话题。要找到自己的兴趣点，并能够和别人分享
+没共同话题。和没话题不太一张。做一个捧哏
+不自信，不敢说。不知道要不要说，这么说合不合适。解决办法：不怕说错，可以委婉的说，征求同意
+太紧张，总是在想该说啥。导致什么都说不出来
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/生活/日记/当你感觉无所事事时怎么办/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/29/生活/日记/当你感觉无所事事时怎么办/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-29T16:32:58+08:00">
+                2019-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>看文章/阅读类</p>
+<ul>
+<li>辉哥奇谭公众号文章汇总</li>
+<li>得到逻辑思维</li>
+<li>南方周末</li>
+</ul>
 
           
         
@@ -1438,7 +1295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/数据库/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/生活/日记/2019.06.23/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -1457,7 +1314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/14/数据库/" itemprop="url">SQL注入</a></h1>
+                <a class="post-title-link" href="/2019/06/23/生活/日记/2019.06.23/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -1469,8 +1326,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-14T11:05:50+08:00">
-                2018-01-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T14:34:50+08:00">
+                2019-06-23
               </time>
             
 
@@ -1479,28 +1336,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1531,12 +1366,8 @@
       
         
           
-            <h3 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h3><blockquote>
-<p>所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。[1]  比如先前的很多影视网站泄露VIP会员密码大多就是通过WEB表单递交查询字符暴出的，这类表单特别容易受到SQL注入式攻击．</p>
-</blockquote>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。<br>根据相关技术原理，SQL注入可以分为平台层注入和代码层注入。前者由不安全的数据库配置或数据库平台的漏洞所致；后者主要是由于程序员对输入未进行细致地过滤，从而执行了非法的数据查询。基于此，SQL注入的产生原因通常表现在以下几方面：①不当的类型处理；②不安全的数据库配置；③不合理的查询集处理；④不当的错误处理；⑤转义字符处理不合适；⑥多个提交处理不当。</p>
-<h3 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h3><p>当应用程序使用输入内容来构造动态sql语句以访问数据库时，会发生sql注入攻击。如果代码使用存储过程，而这些存储过程作为包含未筛选的用户输入的字符串来传递，也会发生sql注入。sql注入可能导致攻击者使用应用程序登陆在数据库中执行命令。相关的SQL注入可以通过测试工具pangolin进行。如果应用程序使用特权过高的帐户连接到数据库，这种问题会变得很严重。在某些表单中，用户输入的内容直接用来构造动态sql命令，或者作为存储过程的输入参数，这些表单特别容易受到sql注入的攻击。而许多网站程序在编写时，没有对用户输入的合法性进行判断或者程序中本身的变量处理不当，使应用程序存在安全隐患。这样，用户就可以提交一段数据库查询的代码，根据程序返回的结果，获得一些敏感的信息或者控制整个服务器，于是sql注入就发生了。</p>
-<h3 id="防护"><a href="#防护" class="headerlink" title="防护"></a>防护</h3><p>归纳一下，主要有以下几点：<br>1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和<br>双”-“进行转换等。<br>2.永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。</p>
+            <h3 id="周末的时光"><a href="#周末的时光" class="headerlink" title="周末的时光"></a>周末的时光</h3><p>今天是周日。最近这些天周末大部分时间都在看娃，真的成了奶爸。看娃是快乐的，有时看着格格在自己的怀中甜甜的睡去，还时不时的笑意，心里不由得很是高兴；看娃又是辛苦的，当她闹腾，哄也哄不好时，心里也会很着急毛躁。</p>
+<p>即便是看娃占据了大部分时间，也不能让放任自己这样下去。一定要腾出时间来做些自己的事情。这是个很好的时间管理问题，当在看娃时，可以看一些视频知识；当有一段空闲的时间时，就尽量让自己独处。</p>
 
           
         
@@ -1585,7 +1416,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/并发/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/10/生活/日记/2019.06.10(回杭)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -1604,7 +1435,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/09/并发/" itemprop="url">乐观锁与悲观锁</a></h1>
+                <a class="post-title-link" href="/2019/06/10/生活/日记/2019.06.10(回杭)/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -1616,8 +1447,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-09T10:05:39+08:00">
-                2018-01-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-10T17:46:09+08:00">
+                2019-06-10
               </time>
             
 
@@ -1626,28 +1457,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/并发/" itemprop="url" rel="index">
-                    <span itemprop="name">并发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1678,17 +1487,15 @@
       
         
           
-            <h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>如一个金融系统，当某个操作员读取用户的数据，并在读出的用户数据的基础上进行修改时（如更改用户帐户余额），如果采用悲观锁机制，也就意味着整个操作过 程中（从操作员读出数据、开始修改直至提交修改结果的全过程，甚至还包括操作 员中途去煮咖啡的时间），数据库记录始终处于加锁状态，可以想见，如果面对几百上千个并发，这样的情况将导致怎样的后果。</p>
-<p><strong> 乐观锁机制在一定程度上解决了这个问题。乐观锁，大多是基于数据版本 （ Version ）记录机制实现。何谓数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。</strong></p>
-<p><strong>读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</strong></p>
-<p>对于上面修改用户帐户信息的例子而言，假设数据库中帐户信息表中有一个 version 字段，当前值为 1 ；而当前帐户余额字段（ balance ）为 $100 。</p>
-<ol>
-<li>操作员 A 此时将其读出（ version=1 ），并从其帐户余额中扣除 $50（ $100-$50 ）。</li>
-<li>在操作员 A 操作的过程中，操作员B 也读入此用户信息（ version=1 ），并从其帐户余额中扣除 $20 （ $100-$20 ）。</li>
-<li>操作员 A 完成了修改工作，将数据版本号加一（ version=2 ），连同帐户扣除后余额（ balance=$50 ），提交至数据库更新，此时由于提交数据版本大于数据库记录当前版本，数据被更新，数据库记录 version 更新为 2 。</li>
-<li>操作员 B 完成了操作，也将版本号加一（ version=2 ）试图向数据库提交数据（ balance=$80 ），但此时比对数据库记录版本时发现，操作员 B 提交的数据版本号为 2 ，数据库记录当前版本也为 2 ，不满足 “ 提交版本必须大于记录当前版本才能执行更新 “ 的乐观锁策略，因此，操作员 B 的提交被驳回。</li>
-</ol>
-<p>这样，就避免了操作员 B 用基于 version=1 的旧数据修改的结果覆盖操作员A 的操作结果的可能。</p>
+            <p>四天的假期时间很紧张，有想见的人没有见，有想做的事儿没有做。比如，特别想和久别的同学见个面，可就算是乡镇和市里的距离也由于各有各的事情而终究没有见面，嘴上说着下次一定见面，可不知“下次”是多久。又比如，特别想去外婆那里住一晚，再感受并学习一下外婆自律、自觉、安静的生活环境，唠唠工作生活上的七八事，希望激励到自己，也因为时间太仓促而没有达成。</p>
+<p>虽然现在交通工具非常便捷，但我还是想说杭州是远的。远到每年只能与家人见几次面，每次见面可能他们的皱纹又多了很多，不认识了一些；远到想品尝家乡的味道却可望不可及；远到小侄女见到我格外高兴，亲切的和叔叔玩耍，小侄子却不太认识这个叔叔。</p>
+<p>总想着有时间就多回家看看，但实际不太现实。有工作的牵绊，有路费的昂贵，有家人的想法，种种原因，使得回家成为一种渴望，甚至是奢望。</p>
+<p>这次回家，有两大收获，想说服母亲的两件事都基本达成了。一件是不再种地，一件是不再盖房。可以说是减轻了家庭的负担，稍解开了母亲的心结。对于父母，现在最重要的不是再多要强，挣多少钱，而是保重身体。</p>
+<h4 id="关于父亲"><a href="#关于父亲" class="headerlink" title="关于父亲"></a>关于父亲</h4><p>这次回家父亲又变化了很多，脸晒得更加黑了，右胳膊因为摔断不好使了，尤其腿脚更加不灵便了。我看现在移动一步是那么困难，很担心他不能照顾自己了。</p>
+<p>这次我离家时，看着他还猛地从床上爬起来，然后艰难的走到大门口和我以及母亲以及等车，心里很是难受。</p>
+<p>站在他个人角度而言，父亲自己应该也觉得很没面子，或者用大哥的话说，“感到自卑”。上午带着父亲去杨屯医院去看腿疾，在医院里面第一次用上了轮椅，我也是第一次推他。当周围人有异样的眼光或者话语，他的心里应该也很不是滋味儿。</p>
+<p>有些事情我想的太简单了，让父亲不干了然后和母亲一起来杭州，或者觉得他不干活了自己能照顾自己；其实这里面会面临很多困难和问题</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>在从县城到济南的车上，拿起电话和外婆打了个电话，内心里是想和外婆多聊几句，可最终也没说几句。外婆也意会我的意思。<strong>心胸宽阔着点儿，照顾好他娘俩</strong>，两句嘱咐的话，已经表达了老人对我的期望，听着竟然有些眼睛湿润。</p>
 
           
         
@@ -1728,7 +1535,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1774,7 +1581,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -1785,7 +1592,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">Kategorien</span>
               </a>
             </div>
@@ -1796,7 +1603,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -1838,7 +1645,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

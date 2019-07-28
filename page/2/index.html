@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/08/Java编程规范/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/06/生活/日记/2019.06.06(工作)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -298,7 +298,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/08/Java编程规范/" itemprop="url">Java编程规范</a></h1>
+                <a class="post-title-link" href="/2019/06/06/生活/日记/2019.06.06(工作)/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-08T23:01:43+08:00">
-                2018-01-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-06T22:13:50+08:00">
+                2019-06-06
               </time>
             
 
@@ -350,130 +350,25 @@
       
         
           
-            <h2 id="一-编程规约"><a href="#一-编程规约" class="headerlink" title="一. 编程规约"></a>一. 编程规约</h2><ol>
-<li><p>关于基本数据类型与包装数据类型的使用标准如下:</p>
+            <p>交代的事情要有回响，别以为老大事情多忘记了，也不要觉得这事儿不重要</p>
+<blockquote>
+<p>今天被老大diss了，等到别人逼你就晚了。啥事主动一步，多想一步</p>
+</blockquote>
+<p>答应业务方同学的事情要做到，要不然就别答应</p>
+<p>如果推动事情向前解决？</p>
 <ul>
-<li>【强制】所有的POJO类属性必须使用包装数据类型。</li>
-<li>【强制】RPC方法的返回值和参数必须使用包装数据类型。</li>
-<li>【推荐】所有的局部变量使用基本数据类型。</li>
+<li>一定要及时跟老大反馈进度和问题</li>
+<li>不一定非得当面跟老大反馈；最好在大群里直接同步信息，这样老大也经常看，有问题直接讨论</li>
 </ul>
-<blockquote>
-<p>说明:POJO 类属性没有初值是提醒使用者在需要使用时,必须自己显式地进行赋值,任何 NPE 问题, 或者入库检查,都由使用者来保证。</p>
-</blockquote>
-<p>正例: 数据库的查询结果可能是 null,因为自动拆箱,用基本数据类型接收有 NPE 风险。</p>
-<p>反例:比如显示成交总额涨跌情况,即正负 x%,x 为基本数据类型,调用的 RPC 服务,调用不成功时,返回的是默认值,页面显示为 0%,这是不合理的,应该显示成中划线。所以包装数据类型的 null 值,能 够表示额外的信息,如:远程调用失败,异常退出。</p>
-<blockquote>
-<p>解读:根本原因在于基本数据类型必须有值,而基本数据类型的包装类可以是 null。使用基本数据类型的 包装类代替基本类型,可以避免出现 null 值时因无法放入基本数据类型而抛出的 NullPointerException。对于不能停机升级的互联网业务尤为重要,因为数据库表在线升级一般采用增加 可空字段的手段,老数据的新字段一般是 null,所以数据对象(DO)最好使用基本数据类型的包装类,由 应用层逻辑来保证数据完整性。</p>
-</blockquote>
-</li>
-<li><p>单行字符数限制不超过 120 个,超出需要换行,换行时遵循如下原则:</p>
+<h3 id="逆向思维：知道自己不该做什么"><a href="#逆向思维：知道自己不该做什么" class="headerlink" title="逆向思维：知道自己不该做什么"></a>逆向思维：知道自己不该做什么</h3><p><strong>事情太多，要想清楚哪些是要舍弃的，哪些是TopN的。</strong></p>
 <ul>
-<li>第二行相对第一行缩进4个空格,从第三行开始,不再继续缩进,参考示例。</li>
-<li>运算符与下文一起换行。</li>
-<li>方法调用的点符号与下文一起换行。</li>
-<li>方法调用时,多个参数,需要换行时,在逗号后进行。</li>
-<li>在括号前不要换行,见反例。</li>
+<li>该屏蔽的群屏蔽，心态要放好不是所有的消息都必须第一时间回。</li>
+<li>什么消息需要第一时间回，被老大@的，业务应急的。</li>
+<li>那么遇到很多@的该怎么办，可以看手机，如果不紧急就未读。</li>
+<li>减少让自己被@的次数，业务要拆解到小组其他同学，有补位的。</li>
+<li>集中时间回复不紧急的消息，午饭前和晚饭前。()</li>
+<li>临时找的业务视情况不接待，否则会被拖死</li>
 </ul>
-<p>正例:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 超过120个字符的情况下,换行缩进4个空格,点号和方法名称一起换行 sb.append("zi").append("xin")...</span></span><br><span class="line">             .append(<span class="string">"huang"</span>)...</span><br><span class="line">             .append(<span class="string">"huang"</span>)...</span><br><span class="line">             .append(<span class="string">"huang"</span>);</span><br></pre></td></tr></table></figure>
-<p>反例:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line"><span class="comment">// 超过120个字符的情况下,不要在括号前换行 sb.append("zi").append("xin")...append</span></span><br><span class="line">(<span class="string">"huang"</span>);</span><br><span class="line"><span class="comment">// 参数很多的方法调用可能超过120个字符,不要在逗号前换行 method(args1, args2, args3, ...</span></span><br><span class="line">, argsX);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>解读:本条目属于《Java Code Conventions》第4章缩进的4.1行长度和4.2换行。对于行长度:原来限定为 80,源于以前用字符终端在服务器上写代码开发,字符终端是80 * 25的,即每行只能显示80个字符,若超长,字符终端会自动折行导致显示混乱。现在开发环境的分辨率很高,80已经不适应了,所以建议设置到120个。</p>
-</blockquote>
-<p>对于换行:</p>
-<ol>
-<li>在逗号后面换行;</li>
-<li>在操作符前面换行;</li>
-<li>高级别换行好于低级别换行;</li>
-<li>新的一行应该与上一行同一级别表达式的开头处对齐;</li>
-<li>如果上述规则导致代码混乱或者代码被堆积到右侧,那么用8个空格的缩进代替。</li>
-</ol>
-</li>
-<li><p>【推荐】setter方法中,参数名称与类成员变量名称一致,this.成员名=参数名。在<br>getter/setter 方法中,不要增加业务逻辑,增加排查问题的难度。<br>反例:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> Integer <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.data + <span class="number">100</span>;</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.data - <span class="number">100</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>【强制】关于 hashCode 和 equals 的处理,遵循如下规则:</p>
-<ul>
-<li>只要重写equals,就必须重写hashCode。</li>
-<li>因为Set存储的是不重复的对象,依据hashCode和equals进行判断,所以Set存储的对象必须重 写这两个方法。</li>
-<li>如果自定义对象作为Map的键,那么必须重写hashCode和equals。</li>
-</ul>
-<blockquote>
-<p>说明:String 重写了 hashCode 和 equals 方法,所以我们可以非常愉快地使用 String 对象作为 key 来使用。</p>
-</blockquote>
-</li>
-<li><p>【强制】 ArrayList 的 subList 结果不可强转成 ArrayList,否则会抛出 ClassCastException 异 常,即 java.util.RandomAccessSubList cannot be cast to java.util.ArrayList。<br>说明:subList 返回的是 ArrayList 的内部类 SubList,并不是 ArrayList ,而是 ArrayList 的 一个视图,对于 SubList 子列表的所有操作最终会反映到原列表上。</p>
-</li>
-<li><p>【强制】使用集合转数组的方法,必须使用集合的 toArray(T[] array),传入的是类型完全一样的数 组,大小就是 list.size()。</p>
-<blockquote>
-<p>说明:使用 toArray 带参方法,入参分配的数组空间不够大时,toArray 方法内部将重新分配内存空 间,并返回新数组地址;如果数组元素个数大于实际所需,下标为[ list.size() ] 的数组元素将被置 为 null,其它数组元素保持原值,因此最好将方法入参数组大小定义与集合元素个数一致。</p>
-</blockquote>
-<p>正例:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;(<span class="number">2</span>);</span><br><span class="line">list.add(<span class="string">"guan"</span>);</span><br><span class="line">list.add(<span class="string">"bao"</span>);</span><br><span class="line">String[] array = <span class="keyword">new</span> String[list.size()];</span><br><span class="line">array = list.toArray(array);</span><br></pre></td></tr></table></figure>
-<p>反例:直接使用 toArray 无参方法存在问题,此方法返回值只能是 Object[]类,若强转其它类型数组将 出现 ClassCastException 错误。</p>
-</li>
-<li><p>【强制】使用工具类 Arrays.asList()把数组转换成集合时,不能使用其修改集合相关的方法,它的 add/remove/clear 方法会抛出 UnsupportedOperationException 异常。</p>
-<blockquote>
-<p>说明:asList 的返回对象是一个 Arrays 内部类,并没有实现集合的修改方法。Arrays.asList 体现 的是适配器模式,只是转换接口,后台的数据仍是数组。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] str = <span class="keyword">new</span> String[] &#123; <span class="string">"you"</span>, <span class="string">"wu"</span> &#125;;</span><br><span class="line">List list = Arrays.asList(str);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第一种情况:list.add(“yangguanbao”); 运行时异常。</li>
-<li>第二种情况:str[0] = “gujin”; 那么 list.get(0)也会随之修改。</li>
-</ul>
-<blockquote>
-<p>怎么解？ 将Arrays.asList()得到的对象重新创建新的对象。List list = Arrays.asList(str);<br>ArrayList copiedList = new ArrayList&lt;&gt;(list);</p>
-</blockquote>
-</li>
-<li><p>【强制】不要在 foreach 循环里进行元素的 remove/add 操作。remove 元素请使用 Iterator 方式,<br>如果并发操作,需要对 Iterator 对象加锁。<br>正例:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;String&gt; iterator = list.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">  String item = iterator.next(); <span class="keyword">if</span> (删除元素的条件) &#123;</span><br><span class="line">       iterator.remove();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>反例:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">     List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">     list.add(<span class="string">"1"</span>);</span><br><span class="line">     list.add(<span class="string">"2"</span>);</span><br><span class="line">     <span class="keyword">for</span> (String item : list) &#123;</span><br><span class="line">         <span class="keyword">if</span> (<span class="string">"1"</span>.equals(item)) &#123;</span><br><span class="line">             list.remove(item);</span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>说明:以上代码的执行结果肯定会出乎大家的意料,那么试一下把“1”换成“2”,会是同样的结果吗? 解读:参看《Java 编程思想》第四版第 11.13 Foreach 与迭代器。foreach 循环是调用实现了 java.lang.Iterable<t>接口的对象的 iterator()获得一个 Iterator 迭代对象,用这个迭代对象来遍 历。如果要对集合进行增删操作,都必须经过 Iterator,否则 Iterator 遍历时会乱。所以直接对集合进 行删除时,Iterator 会抛出 ConcurrentModificationException 异常。<br>在 ArrayList 类中,iterator()方法返回的是内部类 Itr 实例,Itr 对象里面有一个成员变量 expectedModCount(期望修改次数),AbstractList 里面有一个 modCount(修改次数),迭代时每次都 会判断两个修改次数是否相等,不等则抛出 ConcurrentModificationException 异常。</t></p>
-</blockquote>
-</li>
-<li><p>【强制】velocity 调用 POJO 类的属性时,建议直接使用属性名取值即可,模板引擎会自动按规范调用 POJO 的 getXxx(),如果是 boolean 基本数据类型变量(boolean 命名不需要加 is 前缀),会自动调 用 isXxx()方法。</p>
-<blockquote>
-<p>说明:注意如果是 Boolean 包装类对象,优先调用 getXxx()的方法。<br>解读:velocity 调用 POJO 类的属性时处理规则,注意布尔型基本数据类型和包装类对象之间的区别。</p>
-</blockquote>
-</li>
-<li><p>【推荐】单表行数超过500万行或者单表容量超过2GB,才推荐进行分库分表。</p>
-<blockquote>
-<p>说明:如果预计三年后的数据量根本达不到这个级别,请不要在创建表时就分库分表。</p>
-<p>解读:分库分表的优势:可以将压力分散到多张表和库满足互联网高并发读的需求(适合业务数据实时性 要求不会太高,跟钱有关的核心数据一定要严格考虑延时带来的后果),安全性更高,某个功能出现故障 不影响整体业务。依靠普通的 PC SERVER 架构堆机器,屌丝流逆袭小型机上的 Oracle。</p>
-<p>分库分表的缺点:许多聚集操作变得非常困难(group by,max,min,count),应用需要额外的程序来控 制数据路由,要仔细考虑跨库事务控制(JTA 慢,最大努力一段式提交要考虑失败手工回滚策略),基于 全局数据视图的各种系统开发都会更复杂,另外在数据迁移和升级过程中也加大了难度。所以除非数据量 很大,否则没有必要分库分表。</p>
-</blockquote>
-</li>
-<li><p>【强制】超过三个表禁止 join。需要 join 的字段,数据类型必须绝对一致;多表关联查询时,保证被关 联的字段需要有索引。</p>
-<blockquote>
-<p>说明:即使双表 join 也要注意表索引、SQL 性能。</p>
-<p>解读:数据类型为何要一致?表连接是十分消耗性能的动作。数据类型的一致能大量减少数据类型转换带 来的性能消耗。举例:两表日期作为连接关键字,有的同学喜欢用字符串,有的喜欢用日期类型。在做表 连接时,将带来巨大的性能消耗,其次索引问题也将浮现,索引对于数据类型转换是十分敏感的,曾经就 有由于字符串没加单引号导致没走索引继而导致锁争用问题,load 飙升。 被关联的字段为何必须要有索引?Mysql 的连接只有 NEST LOOP 一种,类似于开发同学常见的嵌套循环, 两个 FOR 循环这种。外 FOR 循环,在 Mysql 里叫驱动表;内 FOR 循环,在 Mysql 里叫被驱动表。在连接时 候 Mysql 把外循环(驱动表)中每一个值代入到内循环(被驱动表中遍历),即内循环要被检索 N 次,N 为 驱动表的行数(可能会有些 where 条件过滤一部分数据)。如果内循环(被驱动表)没有索引,也就是说 要全表扫描 N 次。</p>
-</blockquote>
-</li>
-<li><p>【强制】页面搜索严禁左模糊或者全模糊,如果需要请走搜索引擎来解决。</p>
-<blockquote>
-<p>说明:索引文件具有 B-Tree 的最左前缀匹配特性,如果左边的值未确定,那么无法使用此索引。 解读:like ‘139%’这种可能走索引,like ‘%1234%’和 like ‘%2345’这种一定不走索引。</p>
-</blockquote>
-</li>
-<li><p>【推荐】如果有 order by 的场景,请注意利用索引的有序性。order by 最后的字段是组合索引的一部 分,并且放在索引组合顺序的最后,避免出现 file_sort 的情况,影响查询性能。<br>正例:where a=? and b=? order by c; 索引:a_b_c 反例:索引中有范围查找,那么索引有序性无法利用,如:WHERE a&gt;10 ORDER BY b; 索引 a_b 无法 排序。</p>
-<blockquote>
-<p>解读:假设索引列顺序为(城市,年龄,收入),索引类似下图的逻辑<br>北京      上海    广州<br>/   \     /  \    /  \<br>20   25   20  25  20  25<br>|    |    |   |   |  |<br>收入 收入 收入 收入 收入 收入<br>因为索引是有序的,所以收入应该是排序好的。当提取这张表中北京人的收入从小到大结果时,这个索 引就无法被利用,为什么呢?因为他是按照北京-20 岁和北京-25 岁这个条件分别排序的。并没有按照北 京人这个单独条件来排序,自然也不可能利用到索引。解决办法是重建一个索引(城市,收入),这样 就可以利用索引来检索,各个城市收入的排序结果了。同理,范围查找也是一样,由于前面的列范围被 模糊了,而索引只能得到特定条件下的排序结果,所以无法使用索引。</p>
-</blockquote>
-</li>
-<li><p>【推荐】利用延迟关联或者子查询优化超多分页场景。<br>说明:MySQL 并不是跳过 offset 行,而是取 offset+N 行,然后返回放弃前 offset 行,返回 N 行,那 当 offset 特别大的时候,效率就非常的低下,要么控制返回的总页数,要么对超过特定阈值的页数进行 SQL 改写。</p>
-<p>正例:先快速定位需要获取的 id 段,然后再关联:<br>SELECT a.* FROM 表 1 a, (select id from 表 1 where 条件 LIMIT 100000,20 ) b where a.id=b.id</p>
-<blockquote>
-<p>解读:正例的思路是利用表的覆盖索引(参考第 6 条)来加速分页的 ID 列表查询,然后再进行表关联查询出结果集。</p>
-</blockquote>
-</li>
-<li><p>【强制】sql.xml配置参数使用:#{},#param#不要使用${}此种方式容易出现SQL注入。</p>
-<blockquote>
-<p>解读:在 iBatis 或 MyBatis 里面,“#”占位符底层会使用 PreparedStatement 来实现,“$”占位符只 是在 SQL 上进行字符串替换。而字符串拼接 SQL 是 SQL 注入的问题根源所在。</p>
-</blockquote>
-</li>
-</ol>
 
           
         
@@ -522,7 +417,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/26/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/06/生活/日记/2019.06.06(归途)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -541,7 +436,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/26/test/" itemprop="url">test</a></h1>
+                <a class="post-title-link" href="/2019/06/06/生活/日记/2019.06.06(归途)/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -553,8 +448,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-26T16:50:57+08:00">
-                2017-11-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-06T19:47:27+08:00">
+                2019-06-06
               </time>
             
 
@@ -593,7 +488,16 @@
       
         
           
-            <p>this is test file.</p>
+            <p>这是一个“多事”的时段，端午节，高考，麦收，晋升答辩完毕，而我此时此刻在回家的火车上。</p>
+<p>距离上次回家已经有八九个月了吧，家里是否变化了不少，家人是否变化了不少。此次回家首要目的是看望家人，其次还有几个意愿和想法希望与父母交谈。</p>
+<ul>
+<li>关于盖房子的事儿</li>
+<li>关于种地的事儿</li>
+<li>关于看孩子的事儿</li>
+</ul>
+<p>终归一个目的，让父母停止辛劳的劳动，以保重身体为首要目标，不再“心强”。</p>
+<p>我的家庭与别人不一样的地方在于父亲腿脚不好，年纪越来越大加之近两年的事故，越发不能自理。所以，大家庭走下去离不开母亲。但现在我这个远在杭州的小家庭也会越来越需要母亲，所以如何兼顾两个家庭，成了一个难题。</p>
+<p>也许这次和父母交谈后，也没有答案，只能走一步看一步，但终究需要尽量解开母亲的心结，不要给她更大的压力。</p>
 
           
         
@@ -642,7 +546,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/26/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/02/生活/日记/2019.06.02-晋升过程review/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -661,7 +565,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/26/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2019/06/02/生活/日记/2019.06.02-晋升过程review/" itemprop="url">Unbenannt</a></h1>
         
 
         <div class="post-meta">
@@ -673,8 +577,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-26T16:42:07+08:00">
-                2017-11-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-02T14:47:36+08:00">
+                2019-06-02
               </time>
             
 
@@ -713,15 +617,951 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>前天下午面试终于结束了，一颗悬着的心终于落下来了，虽然还没有完全落地，最终结果还要等上一个月，但终归可以放松下了。<br>整体来讲，相比去年好了很多，这里面我要好好想想自己实力占了多大部分，运气和别人给你的占了多大部分。</p>
+<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p>PPT从4月份就开始准备了，甚至可以说是3月份，当时格格还没有出生， 想着在她出生前出一个版本。但实际上真正好好开始做是一直到了五一。</p>
+<ul>
+<li>五一之前先给了一版思路，没有主线/主线不清晰</li>
+<li>五一后整体理了一遍思路，但产出的思路还是比较乱</li>
+<li>然后可以说一直到 5.20前 整个过程都在纠结 硬思考，然后当没有思路时非常担心非常焦虑的去找老板讨论，希望得到一个答案。5.20 终于产出一个版本，认为可以交一下差了</li>
+<li>5.20开始组内讲第一遍。看了后还是不少问题，技术上没深度，价值上没体现，PPT样式上和各个图都存在很大的问题；这个时候更加的焦虑了，主要原因是<strong>别人给你提了建议，觉得都对，但不知道如何下手改</strong>；这一周会讲了两到三遍，但每一次其实都<strong>不太能看到自己的改变</strong></li>
+<li>周末又改了一些图；还在纠结要不要把整体样式全部换掉，因为keynote画技术架构图太难了，让人感觉全是框框</li>
+</ul>
+<h3 id="后期准备"><a href="#后期准备" class="headerlink" title="后期准备"></a>后期准备</h3><p>回顾最后一周的准备过程，才确实发生了不小的变化，但过程仍然是非常紧张的；</p>
+<ul>
+<li>内容上，每一天都在考虑怎么画图，到最后硬生生把所有图都换了，并让人觉得有技术的感觉了</li>
+<li>样式上，还是纠结要不要换PPT，因为PPT截图到keynote还觉得像补丁，又没动画。现在反过来看，这些完全没必要，必须在<strong>有限的时间内做正确的事情，并抓大放小</strong></li>
+</ul>
+<p>直到最后一两天，才开始准备可能的问题。并且其实一直到最后都没有太大信心，甚至中途想放弃</p>
+<ul>
+<li><strong>上面每一次改变的过程非常痛苦，总是认为自己黔驴技穷</strong>，并把这种情绪传递给了老板。老板也给了一些反馈，告诉我“不要慌，还有时间”，“讲不好他给我讲一遍”</li>
+<li>倒数第三天晚上，大部门所有人试讲完，我属于“成功的概率不大”的范围，问题还非常多，那晚上其实我还在改PPT。所以整个人的心态完全要崩了</li>
+<li>倒数第二天，老大给了我一些打气的话，并且自己也只能硬着头皮上了，先按自己的套路讲熟练了再说；开始准备些技术问题，发现好多写的技术点不是自己写的，好多细节不清楚，问望总（学到很多），下午看了看代码；当天晚上讲最后一遍，大老大对我感觉信心不大；</li>
+<li>最后一天，只能给自己更多的信心，上班出门前抱着小格格，希望她给我力量，我也保证不让她失望，稍有信心的出门了。下午突然老板问我代码量的问题，心里又开始紧张起来，本来这块就是弱势。告诉自己就剩俩小时面试了，不要被这个事情影响。并且老板临时补了一些技术细节的问题，回答的非常不好，临时又准备了下。就这样硬着头皮上了</li>
+</ul>
+<h3 id="过程中"><a href="#过程中" class="headerlink" title="过程中"></a>过程中</h3><ul>
+<li>讲的过程中，还是比较顺利；讲完后，P9首先笑着说“PPT做的不错”，听了很惊讶，小开心。</li>
+<li>回答问题的时候思路还是有些乱，着急回答</li>
+<li>技术细节问题没问，问的是模型上的东西</li>
+<li>有运气的成分在，PPT的样式让评委眼前一亮；前一个同学表现不佳形成反差等</li>
+</ul>
+<h3 id="结束后"><a href="#结束后" class="headerlink" title="结束后"></a>结束后</h3><p>不管怎么样，对自己对老板都有了个交代。但有一点做的不好，就是结束后的心态</p>
+<ul>
+<li>如果自我感觉良好，不能滔滔不绝的“飘起来”</li>
+<li>不要把自己的弱项让全世界都知道，到处说，说不定你就在这儿栽坑，给别人也留下不好的印象 （代码量低，PPT内容的干货自己不是主力等）</li>
+</ul>
+<h3 id="以后的路程"><a href="#以后的路程" class="headerlink" title="以后的路程"></a>以后的路程</h3><ul>
+<li>永远不要轻易说放弃；保持积极的心态（过程中太痛苦，真的几次想要放弃）</li>
+<li>要让自己变得更“干”，技术深度和广度都得有；好奇心真的很重要</li>
+<li>别人给你了机会，你自己要争气啊。加油干吧</li>
+<li>别人说你话少，你就该听着。确实性格会很可能阻碍你的发展；性格不好，心态不好，遇事不能抗事；性格不好，不会人际交往，得不到别人的帮助；</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/生活/日记/2019.05.26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/26/生活/日记/2019.05.26/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-26T23:00:45+08:00">
+                2019-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>当危机感足够强，求生欲足够强时，「性格软弱，不强势」就不再是接口。一切都取决于，你是否相信危险即将来临</strong><br><a href="https://mp.weixin.qq.com/s/UpoGOaE2c48eVhV4A9kwFQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UpoGOaE2c48eVhV4A9kwFQ</a></p>
+</blockquote>
+<p>日记停更已经十天有余，这些天一直在准备晋升的事情。说实话，即使准备了这么多感觉还是没有太大的提升和改变。</p>
+<p>马上就要面试了，下周五下午最后一个。谨以上面的话语自勉。要记住自己已经是背水一战了，决定生死存亡的一站，已经没有退路。似乎对这个的认识还不够。</p>
+<p>你想想去年失败后的状态，还想重演么。不想的话，就打起精神来。</p>
+<p>现在最重要的是，态度积极，自信，哪怕是佯装自信。负面情绪只会使你越来越笨，脑子越来越不灵光。</p>
+<p>刚才，抱了格格一会儿，在我怀里睡着了。发现已经好久没好好陪她了。再努力这一周，扛过去，相信你！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/生活/日记/当你心情低落时怎么办/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/26/生活/日记/当你心情低落时怎么办/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-26T22:56:13+08:00">
+                2019-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="assets/markdown-img-paste-20190526225655574.png" alt=""></p>
+<hr>
+<p>当危机感足够强，求生欲足够强时，「性格软弱，不强势」就不再是接口。一切都取决于，你是否相信危险即将来临<br><a href="https://mp.weixin.qq.com/s/UpoGOaE2c48eVhV4A9kwFQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UpoGOaE2c48eVhV4A9kwFQ</a></p>
+<p>想想外婆，和外婆视频下</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/生活/日记/2019.05.13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/13/生活/日记/2019.05.13/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-13T22:14:23+08:00">
+                2019-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="0513"><a href="#0513" class="headerlink" title="0513"></a>0513</h2><p>1.</p>
+<p>盼望着，母亲明晚就要到了。还是那句话，首要的，保佑家里，所有人这段时间都平平安安的。</p>
+<p>到了要来的时刻，心情倒也没有太大的波动，没有特别兴奋，也许是经常通电话的缘故。</p>
+<p>2.</p>
+<p>今日之我的状态。</p>
+<p>今天写了一些代码，感觉做了一些“实事”。功能虽小，但让自己感觉很充实，自信心也提升了一些，内心状态会好一些，不那么焦躁。<strong>每天进步一点点</strong></p>
+<p><strong>所以焦躁的原因是什么？应该是没有产出</strong></p>
+<p>晚上见了一个近卫军同学，说到自我感觉状态很差，别人连连点头，可见我在别人眼中的形象。</p>
+<p><strong>所以，保持好的状态是很重要的。你的成败或许决定于此</strong></p>
+<p>3.</p>
+<p>关于晋升</p>
+<p>我应该感到庆幸，今年你还有机会被提名，而且绩效相对别人不错。所以<strong>要感恩，多从自己找问题。</strong></p>
+<p>不要抱侥幸态度，去年就有些被侥幸态度所误。总感觉别人既然器重你，晋升的概率就大些。</p>
+<p>此外，无论外部风云如何变幻（晋升政策的变化，难度的增加…），<strong>我要做的就是做好自己的事情，不断强化自己，以不变应万变</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/生活/日记/2019.05.12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/12/生活/日记/2019.05.12/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-12T20:48:24+08:00">
+                2019-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="0512"><a href="#0512" class="headerlink" title="0512"></a>0512</h2><h3 id="今天是母亲节"><a href="#今天是母亲节" class="headerlink" title="今天是母亲节"></a>今天是母亲节</h3><p>1.</p>
+<p>早上带格格去了趟医院，看了下额头上长的痘痘，大夫说是痤疮，问题不大，也放心了。</p>
+<p>去医院之前心里想着今天是母亲节了，拿起手机给妈发了条微信：“母亲节快乐，辛苦了！”。印象中没有这样给妈说过这样的话，即使是短信的形式。感情的表达太含蓄。</p>
+<p>2.</p>
+<p>母亲确实是辛苦的。操劳着家里，牵挂着子女。再过两天，她就要到杭州了，一个月前快生格格的时候爸爸摔到胳膊，所以没能来得了。原定的计划泡汤，母亲甚是悔恨，自责，无奈。保佑这次的计划不要出岔子，也保佑爸爸在接下来的一周能好好的。</p>
+<p>3.</p>
+<p>母亲节，有人欢喜有人忧。早上看到了表妹的朋友圈，说梦到了姑姑，梦里姑姑还在，还在带表妹骑车。看到这里，眼睛有些湿润了。每每到这种时候，我希望大家不要把自己的母亲节的快乐辐射到她，不要让她更伤心，也许是我想多了，表妹比我想象中更成熟，更懂事。</p>
+<p>是啊，姑姑过世已经四年多了，过世时才40多岁，表妹还在读高中。这对表妹来说，无疑是一个巨大的打击。但我们没有任何办法起死回生，唯有直面人生。<strong>人生反复无常，且行且珍惜。</strong></p>
+<h3 id="加班"><a href="#加班" class="headerlink" title="加班"></a>加班</h3><p>1.</p>
+<p>周末加了两天班，忙晋升PPT的事情。周末在公司的感觉挺棒的，工位不在是冰冷的，令人厌恶的，而是安静的港湾。越来越喜欢这样独处的空间，可以思考，可以看书，哪怕是发呆也是极好的。</p>
+<p>2.</p>
+<p>明天又是周一了，打起精神来。即便是为了最低级的目标：“赚钱”，你也要好好的努力的去工作。</p>
+<p>又到了检测自己情绪的一周了哦，不要害怕，不要烦躁。深呼吸，先做到不要有压力。有事情就去做事情</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/生活/日记/2019.05.10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/10/生活/日记/2019.05.10/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-10T21:46:08+08:00">
+                2019-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="0510"><a href="#0510" class="headerlink" title="0510"></a>0510</h2><p><strong>关于思考：</strong><br>重要的是不止是要知道哪里不足或要怎么做，而是真正去做，扎扎实实切入问题进行思考，也就是重要的是落地。要不然，喊口号喊了半天，最后没有任何结果。</p>
+<p><strong>关于我这张“苦脸”</strong></p>
+<p>说了这么久要改变自己，还是没有任何进展，今天又被老婆骂了。这种状态谁都不愿意和你靠近，不论家人还是同事。<br>究其原因，还是工作上的问题，工作热爱度不够，能力不够，遇到困难焦头烂额却不知道思考解决办法。导致焦躁越乱，越乱越没有思考，没有解决办法，恶性循环。所以静下心来是第一步，也是最困难的。这点没有做好。</p>
+<p><strong>关于晋升：</strong><br>或许是因为失去过，会特别担心再失去。俗话说的好，失去是为了更好的获得。失去代表你还不够好，别人不是自己，别人牛不代表你牛，最重要的还是自己和自己比，你要懂得这一点。<strong>你真的懂了吗，我看未必。</strong></p>
+<p>唯有放下，才能更好的拿起。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/07/生活/日记/2019.05.07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/07/生活/日记/2019.05.07/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-07T13:43:35+08:00">
+                2019-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="心情"><a href="#心情" class="headerlink" title="心情"></a>心情</h2><p>极度糟糕。焦虑，无助。语气低沉，没有生机，情绪挂在脸上。左看右看，别人都在做什么，看到别人在好好写代码，嫉妒的要命。</p>
+<p>你到底在焦虑什么？</p>
+<ul>
+<li>事情搞不定？<ul>
+<li>融合这个事儿搞的焦头烂额，投入了好多天了，但都是准备工作，到现在没有落地</li>
+<li>做好自己该做的，尽人事，听天命</li>
+<li>为什么工作了三四年了，也做了很多事情了， 遇事还是胆怯，害怕。不知道自己能搞定什么，不能搞定什么，总结过吗</li>
+</ul>
+</li>
+<li>没有产出的焦虑，方向/目标不明确</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/生活/日记/2019.05.05(阿玺分享)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/05/生活/日记/2019.05.05(阿玺分享)/" itemprop="url">Unbenannt</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-05T16:21:00+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>阿玺分享：<br><a href="https://developer.alipay.com/article/8697?from=lyj" target="_blank" rel="noopener">https://developer.alipay.com/article/8697?from=lyj</a></p>
+<h3 id="你喜欢什么，擅长什么，要什么，最后要放弃什么"><a href="#你喜欢什么，擅长什么，要什么，最后要放弃什么" class="headerlink" title="你喜欢什么，擅长什么，要什么，最后要放弃什么"></a>你喜欢什么，擅长什么，要什么，最后要放弃什么</h3><blockquote>
+<p>你的职业规划到底是什么，你现在所处的领域是不是你想要的，你喜欢什么？你擅长什么？你要什么？最后要放弃什么？这是每个人都值得思考的几个问题。</p>
+</blockquote>
+<h3 id="好的事情当成一种锻炼，不好的事情当成一种磨练"><a href="#好的事情当成一种锻炼，不好的事情当成一种磨练" class="headerlink" title="好的事情当成一种锻炼，不好的事情当成一种磨练"></a>好的事情当成一种锻炼，不好的事情当成一种磨练</h3><blockquote>
+<p>别人问你去年晋升失败，做了哪些变化</p>
+<ul>
+<li>最大的变化是对自己的思考：认识自己；把不好的事情当做一种磨练，提升自己；</li>
+</ul>
+</blockquote>
+<h3 id="物来顺应，未来不迎，当时不杂，既过不恋"><a href="#物来顺应，未来不迎，当时不杂，既过不恋" class="headerlink" title="物来顺应，未来不迎，当时不杂，既过不恋"></a>物来顺应，未来不迎，当时不杂，既过不恋</h3><p>遇事不要抱怨，顺其自然，对于还未发生的事不去担忧，专注做好眼前事，过去了的事就不要多想</p>
+<h2 id="修心"><a href="#修心" class="headerlink" title="修心"></a>修心</h2><p>“情商低”的人如何混职场？<a href="https://mp.weixin.qq.com/s/jHR7rDmwMB0oJ73R5pZRhg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/jHR7rDmwMB0oJ73R5pZRhg</a></p>
+<p>确实，当我觉得自己情商低的时候，会<strong>自责，无奈，怨恨自己</strong>。这些情商低的表现为：不会来事，不会开玩笑，跟老板说话没有话题，只会呆板的死扎在工作里….</p>
+<p>文中告诉我，世俗眼里的“情商高”可能是别人天生的，你学不来。你要做的就是</p>
+<ul>
+<li>做自己，保持自己<strong>踏实</strong>价值观</li>
+<li>结果导向，用成绩说话</li>
+<li>工作中主动，保持与自己有紧密利害关系的人的<strong>良好沟通</strong>。不需要迎合，不需要与他们成为铁哥们，只需要<strong>真诚</strong>，<strong>解决问题、提供帮助</strong>的真诚之心</li>
+</ul>
 
           
         
@@ -761,7 +1601,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -807,7 +1647,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -818,7 +1658,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">Kategorien</span>
               </a>
             </div>
@@ -829,7 +1669,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>
@@ -871,7 +1711,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

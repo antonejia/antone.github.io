@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Reactor 和 Proactor什么是阻塞同步 / 非阻塞同步 / 非阻塞异步 IO操作分为两个步骤：1. 等待数据准备好（读取到内核缓存） 2. 将数据从内核读取到用户空间（进程空间）；一般来说步骤1花费的时间远远大于步骤2。 阻塞同步: 1上阻塞 2上也阻塞 非阻塞同步：1上阻塞，2上不阻塞 非阻塞异步：1上不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HEXO">
+<meta property="og:url" content="http://yoursite.com/2018/09/08/技术/从0开始学架构/单服务器高性能模式/index.html">
+<meta property="og:site_name" content="HEXO">
+<meta property="og:description" content="Reactor 和 Proactor什么是阻塞同步 / 非阻塞同步 / 非阻塞异步 IO操作分为两个步骤：1. 等待数据准备好（读取到内核缓存） 2. 将数据从内核读取到用户空间（进程空间）；一般来说步骤1花费的时间远远大于步骤2。 阻塞同步: 1上阻塞 2上也阻塞 非阻塞同步：1上阻塞，2上不阻塞 非阻塞异步：1上不阻塞 2上也不阻塞    什么是 Reactor / Proactor这俩个东西">
+<meta property="og:updated_time" content="2018-10-07T03:22:15.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HEXO">
+<meta name="twitter:description" content="Reactor 和 Proactor什么是阻塞同步 / 非阻塞同步 / 非阻塞异步 IO操作分为两个步骤：1. 等待数据准备好（读取到内核缓存） 2. 将数据从内核读取到用户空间（进程空间）；一般来说步骤1花费的时间远远大于步骤2。 阻塞同步: 1上阻塞 2上也阻塞 非阻塞同步：1上阻塞，2上不阻塞 非阻塞异步：1上不阻塞 2上也不阻塞    什么是 Reactor / Proactor这俩个东西">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/08/技术/从0开始学架构/单服务器高性能模式/"/>
+
+
+
+
+
+  <title> | HEXO</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HEXO</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/08/技术/从0开始学架构/单服务器高性能模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-08T21:19:26+08:00">
+                2018-09-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Reactor-和-Proactor"><a href="#Reactor-和-Proactor" class="headerlink" title="Reactor 和 Proactor"></a>Reactor 和 Proactor</h2><h3 id="什么是阻塞同步-非阻塞同步-非阻塞异步"><a href="#什么是阻塞同步-非阻塞同步-非阻塞异步" class="headerlink" title="什么是阻塞同步 / 非阻塞同步 / 非阻塞异步"></a>什么是阻塞同步 / 非阻塞同步 / 非阻塞异步</h3><ul>
+<li>IO操作分为两个步骤：1. 等待数据准备好（读取到内核缓存） 2. 将数据从内核读取到用户空间（进程空间）；一般来说步骤1花费的时间远远大于步骤2。<ul>
+<li>阻塞同步: 1上阻塞 2上也阻塞</li>
+<li>非阻塞同步：1上阻塞，2上不阻塞</li>
+<li>非阻塞异步：1上不阻塞 2上也不阻塞</li>
+</ul>
+</li>
+</ul>
+<h3 id="什么是-Reactor-Proactor"><a href="#什么是-Reactor-Proactor" class="headerlink" title="什么是 Reactor / Proactor"></a>什么是 Reactor / Proactor</h3><p>这俩个东西解的是啥命题：服务器采用的并发模型，即服务器如何管理连接，以及服务器如何处理请求</p>
+<p>以上说的都跟操作系统的IO模型以及进程模型有关</p>
+<ul>
+<li>IO模型：阻塞 非阻塞 同步 异步</li>
+<li>进程模型：单进程 多进程 多线程</li>
+</ul>
+<h4 id="Reactor"><a href="#Reactor" class="headerlink" title="Reactor"></a>Reactor</h4><p>PPC（Process Per Connection）模式的缺点：每个连接一个进程，连接结束后进程销毁，浪费资源。解决-&gt; : 资源复用。不再为每个连接分配进程，采用<strong>进程池</strong>，将连接分配给进程，一个进程可以处理多个连接。</p>
+<p>引入<strong>资源池</strong>后，一个新的问题：进程怎么高效的处理多个连接的业务。一般，连接的处理过程是：read -&gt; 业务处理 -&gt; write；在一个进程管理多个连接的场景下，如果进程阻塞在一个连接的read上，即使别的连接有数据可读，也不可能处理别的请求，显然是不合理的。所以<strong>解决方式是： 只有连接上有数据的时候进程才去处理，这就是IO多路复用技术</strong>的来源</p>
+<p>IO多路复用（处理请求的方式） + 资源池（管理连接的方式） = Reactor。 该模式核心实体：Reactor和资源池，模式：</p>
+<ul>
+<li><p>单Reactor单进程</p>
+<blockquote>
+<p>Redis是此模式。此模式适用于业务处理非常快的场景</p>
+</blockquote>
+</li>
+<li><p>单Reactor多线程</p>
+</li>
+<li>多Reactor多进程/线程</li>
+</ul>
+<p><strong> Reactor是 非阻塞同步的，Proactor是非阻塞异步的；Reactor可以理解为“有事件时，我通知你，你来处理；Proactor是来了事件我来处理，处理完了通知你”。“我”是操作系统内核，事件是：有新连接，有数据可读，有数据可写，“你”是我们的程序代码</strong></p>
+<blockquote>
+<p>NIO 是 Reactor模式；AIO是 Proactor模式</p>
+<p>打个比方，餐厅点菜：</p>
+<ul>
+<li>柜台点了菜后，在那儿等着。就是阻塞同步；</li>
+<li>柜台点了菜后，回到餐桌后，菜好了后，通知你来取。就是Reactor模式；（有事件时，我通知你，你来处理）</li>
+<li>柜台点了菜后，回到餐桌后，该干嘛干嘛，菜好了后，给你端上来，你只负责吃就好了，就是Proactor模式（来了事件我来处理，处理完了通知你，“吃”就是业务代码）</li>
+</ul>
+</blockquote>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>消息中间件是什么模式</p>
+<blockquote>
+<p>单Reactor 多线程；中间件一般连接数固定，请求量较大；单reactor来管理就好了，多线程处理请求</p>
+</blockquote>
+<p>Redis是什么模式</p>
+<blockquote>
+<p>单Reactor 单进程/线程</p>
+</blockquote>
+<p>什么是 select / epoll</p>
+<blockquote>
+<p>可以这么理解：select / epoll是IO多路复用的具体实现，都是同步IO。<br><a href="https://www.cnblogs.com/jeakeven/p/5435916.html" target="_blank" rel="noopener">https://www.cnblogs.com/jeakeven/p/5435916.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/26/技术/从0开始学架构/高性能缓存架构/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/08/目标/技术学习目标/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="AntoneJia" />
+          <p class="site-author-name" itemprop="name">AntoneJia</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Kategorien</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reactor-和-Proactor"><span class="nav-number">1.</span> <span class="nav-text">Reactor 和 Proactor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是阻塞同步-非阻塞同步-非阻塞异步"><span class="nav-number">1.1.</span> <span class="nav-text">什么是阻塞同步 / 非阻塞同步 / 非阻塞异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Reactor-Proactor"><span class="nav-number">1.2.</span> <span class="nav-text">什么是 Reactor / Proactor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reactor"><span class="nav-number">1.2.1.</span> <span class="nav-text">Reactor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例"><span class="nav-number">1.2.2.</span> <span class="nav-text">案例</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AntoneJia</span>
+</div>
+
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
