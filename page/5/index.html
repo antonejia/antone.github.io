@@ -202,7 +202,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -212,7 +212,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Kategorien
+            Categories
           </a>
         </li>
       
@@ -222,7 +222,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            Über
+            About
           </a>
         </li>
       
@@ -232,7 +232,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/24/技术/从0开始学架构/异地多活/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/技术/数据库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -298,7 +298,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/24/技术/从0开始学架构/异地多活/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2018/01/14/技术/数据库/" itemprop="url">SQL注入</a></h1>
         
 
         <div class="post-meta">
@@ -308,10 +308,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-24T17:40:40+08:00">
-                2018-09-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-14T11:05:50+08:00">
+                2018-01-14
               </time>
             
 
@@ -320,6 +320,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -350,24 +372,164 @@
       
         
           
-            <p>不是所有业务都能够做异地多活。比如：</p>
+            <h3 id="sql注入"><a href="#sql注入" class="headerlink" title="sql注入"></a>sql注入</h3><blockquote>
+<p>所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意的）SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。[1]  比如先前的很多影视网站泄露VIP会员密码大多就是通过WEB表单递交查询字符暴出的，这类表单特别容易受到SQL注入式攻击．</p>
+</blockquote>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>SQL注入攻击指的是通过构建特殊的输入作为参数传入Web应用程序，而这些输入大都是SQL语法里的一些组合，通过执行SQL语句进而执行攻击者所要的操作，其主要原因是程序没有细致地过滤用户输入的数据，致使非法数据侵入系统。<br>根据相关技术原理，SQL注入可以分为平台层注入和代码层注入。前者由不安全的数据库配置或数据库平台的漏洞所致；后者主要是由于程序员对输入未进行细致地过滤，从而执行了非法的数据查询。基于此，SQL注入的产生原因通常表现在以下几方面：①不当的类型处理；②不安全的数据库配置；③不合理的查询集处理；④不当的错误处理；⑤转义字符处理不合适；⑥多个提交处理不当。</p>
+<h3 id="攻击"><a href="#攻击" class="headerlink" title="攻击"></a>攻击</h3><p>当应用程序使用输入内容来构造动态sql语句以访问数据库时，会发生sql注入攻击。如果代码使用存储过程，而这些存储过程作为包含未筛选的用户输入的字符串来传递，也会发生sql注入。sql注入可能导致攻击者使用应用程序登陆在数据库中执行命令。相关的SQL注入可以通过测试工具pangolin进行。如果应用程序使用特权过高的帐户连接到数据库，这种问题会变得很严重。在某些表单中，用户输入的内容直接用来构造动态sql命令，或者作为存储过程的输入参数，这些表单特别容易受到sql注入的攻击。而许多网站程序在编写时，没有对用户输入的合法性进行判断或者程序中本身的变量处理不当，使应用程序存在安全隐患。这样，用户就可以提交一段数据库查询的代码，根据程序返回的结果，获得一些敏感的信息或者控制整个服务器，于是sql注入就发生了。</p>
+<h3 id="防护"><a href="#防护" class="headerlink" title="防护"></a>防护</h3><p>归纳一下，主要有以下几点：<br>1.永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和<br>双”-“进行转换等。<br>2.永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/09/技术/并发/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AntoneJia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HEXO">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/09/技术/并发/" itemprop="url">乐观锁与悲观锁</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-09T10:05:39+08:00">
+                2018-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/并发/" itemprop="url" rel="index">
+                    <span itemprop="name">并发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>如一个金融系统，当某个操作员读取用户的数据，并在读出的用户数据的基础上进行修改时（如更改用户帐户余额），如果采用悲观锁机制，也就意味着整个操作过 程中（从操作员读出数据、开始修改直至提交修改结果的全过程，甚至还包括操作 员中途去煮咖啡的时间），数据库记录始终处于加锁状态，可以想见，如果面对几百上千个并发，这样的情况将导致怎样的后果。</p>
+<p><strong> 乐观锁机制在一定程度上解决了这个问题。乐观锁，大多是基于数据版本 （ Version ）记录机制实现。何谓数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。</strong></p>
+<p><strong>读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</strong></p>
+<p>对于上面修改用户帐户信息的例子而言，假设数据库中帐户信息表中有一个 version 字段，当前值为 1 ；而当前帐户余额字段（ balance ）为 $100 。</p>
 <ol>
-<li>转账</li>
-<li>余额（余额只能做读备份，不能做多活）</li>
+<li>操作员 A 此时将其读出（ version=1 ），并从其帐户余额中扣除 $50（ $100-$50 ）。</li>
+<li>在操作员 A 操作的过程中，操作员B 也读入此用户信息（ version=1 ），并从其帐户余额中扣除 $20 （ $100-$20 ）。</li>
+<li>操作员 A 完成了修改工作，将数据版本号加一（ version=2 ），连同帐户扣除后余额（ balance=$50 ），提交至数据库更新，此时由于提交数据版本大于数据库记录当前版本，数据被更新，数据库记录 version 更新为 2 。</li>
+<li>操作员 B 完成了操作，也将版本号加一（ version=2 ）试图向数据库提交数据（ balance=$80 ），但此时比对数据库记录版本时发现，操作员 B 提交的数据版本号为 2 ，数据库记录当前版本也为 2 ，不满足 “ 提交版本必须大于记录当前版本才能执行更新 “ 的乐观锁策略，因此，操作员 B 的提交被驳回。</li>
 </ol>
-<h2 id="设计技巧"><a href="#设计技巧" class="headerlink" title="设计技巧"></a>设计技巧</h2><ol>
-<li><p>保证核心业务的异地多活</p>
-</li>
-<li><p>保证核心数据的最终一致性</p>
-</li>
-<li><p>采用多种手段同步数据</p>
-<ul>
-<li>不同的数据采取不同的同步策略</li>
-</ul>
-</li>
-<li><p>只保证绝大部分用户的异地多活</p>
-</li>
-</ol>
+<p>这样，就避免了操作员 B 用基于 version=1 的旧数据修改的结果覆盖操作员A 的操作结果的可能。</p>
 
           
         
@@ -416,7 +578,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/23/技术/从0开始学架构/高可用计算架构/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/08/技术/Java编程规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -435,7 +597,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/23/技术/从0开始学架构/高可用计算架构/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2018/01/08/技术/Java编程规范/" itemprop="url">Java编程规范</a></h1>
         
 
         <div class="post-meta">
@@ -445,10 +607,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-23T22:48:44+08:00">
-                2018-09-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-08T23:01:43+08:00">
+                2018-01-08
               </time>
             
 
@@ -487,525 +649,130 @@
       
         
           
-            <p>核心复杂度在于：任务管理</p>
+            <h2 id="一-编程规约"><a href="#一-编程规约" class="headerlink" title="一. 编程规约"></a>一. 编程规约</h2><ol>
+<li><p>关于基本数据类型与包装数据类型的使用标准如下:</p>
 <ul>
-<li>哪些服务器可执行任务<ul>
-<li>策略1：都可以</li>
-<li>策略2：只有部分机器可以，机器角色不同</li>
+<li>【强制】所有的POJO类属性必须使用包装数据类型。</li>
+<li>【强制】RPC方法的返回值和参数必须使用包装数据类型。</li>
+<li>【推荐】所有的局部变量使用基本数据类型。</li>
 </ul>
-</li>
-<li>任务如何重新执行</li>
-</ul>
-<p>架构</p>
-<h2 id="主备"><a href="#主备" class="headerlink" title="主备"></a>主备</h2><p><img src="assets/markdown-img-paste-20180923225816913.png" alt=""></p>
-<h2 id="主从"><a href="#主从" class="headerlink" title="主从"></a>主从</h2><p><img src="assets/markdown-img-paste-20180923225839467.png" alt=""></p>
-<h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><h3 id="对称集群"><a href="#对称集群" class="headerlink" title="对称集群"></a>对称集群</h3><p><img src="assets/markdown-img-paste-20180923225856782.png" alt=""></p>
-<h3 id="非对称集群"><a href="#非对称集群" class="headerlink" title="非对称集群"></a>非对称集群</h3><p><img src="assets/markdown-img-paste-20180923225921825.png" alt=""></p>
-<p>zookeeper为例：</p>
-<ul>
-<li>任务分配：没有一个专门的任务分配器，每个server都是任务分配。Follower角色收到请求后，如果是写请求就转发给leader，如果是读请求就自己处理</li>
-<li>角色指定：zookeeper采用ZAB算法来选取leader，当leader故障后，所有Follower停止服务，开始进行选举，选举出新的Leader后才继续对Client提供服务</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/16/技术/从0开始学架构/0-专栏整体脉络梳理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AntoneJia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HEXO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/16/技术/从0开始学架构/0-专栏整体脉络梳理/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-16T17:21:06+08:00">
-                2018-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>什么是架构</p>
 <blockquote>
-<p>软件架构指 软件系统的顶层结构。<br> 核心概念：系统，子系统，组件，模块，架构</p>
+<p>说明:POJO 类属性没有初值是提醒使用者在需要使用时,必须自己显式地进行赋值,任何 NPE 问题, 或者入库检查,都由使用者来保证。</p>
 </blockquote>
-<p>核心要解决的问题：</p>
+<p>正例: 数据库的查询结果可能是 null,因为自动拆箱,用基本数据类型接收有 NPE 风险。</p>
+<p>反例:比如显示成交总额涨跌情况,即正负 x%,x 为基本数据类型,调用的 RPC 服务,调用不成功时,返回的是默认值,页面显示为 0%,这是不合理的,应该显示成中划线。所以包装数据类型的 null 值,能 够表示额外的信息,如:远程调用失败,异常退出。</p>
 <blockquote>
-<p>高性能：<br>高可用，<br>可扩展</p>
+<p>解读:根本原因在于基本数据类型必须有值,而基本数据类型的包装类可以是 null。使用基本数据类型的 包装类代替基本类型,可以避免出现 null 值时因无法放入基本数据类型而抛出的 NullPointerException。对于不能停机升级的互联网业务尤为重要,因为数据库表在线升级一般采用增加 可空字段的手段,老数据的新字段一般是 null,所以数据对象(DO)最好使用基本数据类型的包装类,由 应用层逻辑来保证数据完整性。</p>
 </blockquote>
-<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><ul>
-<li>计算高可用</li>
-<li><p>存储高可用</p>
-<p>实现方式：冗余</p>
-<p>存储高可用的难点不在于如何备份数据，而在于如何减少或规避数据不一致对业务带来的影响</p>
 </li>
-</ul>
-<p>高可用状态决策方式</p>
+<li><p>单行字符数限制不超过 120 个,超出需要换行,换行时遵循如下原则:</p>
 <ul>
-<li>独裁式</li>
-<li>协商式</li>
-<li>民主式（zookeeper的leader选举方式）</li>
+<li>第二行相对第一行缩进4个空格,从第三行开始,不再继续缩进,参考示例。</li>
+<li>运算符与下文一起换行。</li>
+<li>方法调用的点符号与下文一起换行。</li>
+<li>方法调用时,多个参数,需要换行时,在逗号后进行。</li>
+<li>在括号前不要换行,见反例。</li>
 </ul>
-<p>架构设计三原则</p>
-<ul>
-<li>合适原则</li>
-<li>简单原则</li>
-<li>演化原则</li>
-</ul>
-<p>架构设计流程</p>
-<ul>
-<li>识别复杂度：问题列出来，按优先级排序</li>
-<li>设计备选方案</li>
-<li>评估备选方案</li>
-<li>详细方案设计</li>
-</ul>
-<hr>
-<p>互联网标准技术架构</p>
-<p><img src="assets/markdown-img-paste-20181006183543287.png" alt=""></p>
-<p>网络层</p>
-<ul>
-<li>负载均衡：策略都有哪些<br>-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/16/技术/从0开始学架构/高可用存储架构-双机架构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AntoneJia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HEXO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/16/技术/从0开始学架构/高可用存储架构-双机架构/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-16T16:55:59+08:00">
-                2018-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>解决的问题：</p>
+<p>正例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 超过120个字符的情况下,换行缩进4个空格,点号和方法名称一起换行 sb.append("zi").append("xin")...</span></span><br><span class="line">             .append(<span class="string">"huang"</span>)...</span><br><span class="line">             .append(<span class="string">"huang"</span>)...</span><br><span class="line">             .append(<span class="string">"huang"</span>);</span><br></pre></td></tr></table></figure>
+<p>反例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line"><span class="comment">// 超过120个字符的情况下,不要在括号前换行 sb.append("zi").append("xin")...append</span></span><br><span class="line">(<span class="string">"huang"</span>);</span><br><span class="line"><span class="comment">// 参数很多的方法调用可能超过120个字符,不要在逗号前换行 method(args1, args2, args3, ...</span></span><br><span class="line">, argsX);</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>存储的高可用</p>
+<p>解读:本条目属于《Java Code Conventions》第4章缩进的4.1行长度和4.2换行。对于行长度:原来限定为 80,源于以前用字符终端在服务器上写代码开发,字符终端是80 * 25的,即每行只能显示80个字符,若超长,字符终端会自动折行导致显示混乱。现在开发环境的分辨率很高,80已经不适应了,所以建议设置到120个。</p>
 </blockquote>
-<p>主要思路</p>
-<blockquote>
-<p>复制备份/冗余</p>
-</blockquote>
-<p>主要问题</p>
-<blockquote>
-<ul>
-<li>数据如何复制</li>
-<li>节点的职责</li>
-<li>如何应对复制延迟<ul>
-<li>没有好的解法，必然存在</li>
-</ul>
-</li>
-<li>如何应对复制中断<ul>
-<li>也比较复杂，需要记录复制的位置，参考mysql的binlog复制</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="架构模式"><a href="#架构模式" class="headerlink" title="架构模式"></a>架构模式</h2><h4 id="主备"><a href="#主备" class="headerlink" title="主备"></a>主备</h4><p>备库在正常情况下，只是备份数据，不承担任何读写操作。<br>主库异常时，人工切换到备机器，承担读写</p>
-<h4 id="主从"><a href="#主从" class="headerlink" title="主从"></a>主从</h4><p>主库负责读写，从库负责读；数据从主库 复制 到 从库</p>
-<h4 id="双机切换"><a href="#双机切换" class="headerlink" title="双机切换"></a>双机切换</h4><p>在主备/主从的基础上增加切换功能。切换能力必须考虑的点：</p>
-<ul>
-<li>主备间状态的判断<ul>
-<li>状态传递的渠道：主备之间互联传递状态，还是采用中间机器传递状态</li>
-<li>状态检测的内容：机器是否掉电，进程是否存在，响应是否变慢；这个决定主机器是否可用</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>切换决策</p>
-<ul>
-<li>切换时机：什么时候该切换到备机？机器掉电？主机响应时间超过xx</li>
-<li>切换策略：原来的主机故障恢复后，是重新切换它作为主机，还是继续备机</li>
-<li>自动程度：直接系统切，还是系统决策，人工切</li>
-</ul>
-</li>
-<li><p>数据冲突解决</p>
-<ul>
-<li>原来的主机写入了一条ID为100的数据，此时主机故障了，还未复制到备机，备机升级为主机，新的主机又写入了一条ID为100的数据。当旧主机恢复后，有两条ID为100的数据</li>
-</ul>
-</li>
-</ul>
-<p>架构方式</p>
-<ul>
-<li>互联式<ul>
-<li>主备直接建立状态传递通道</li>
-</ul>
-</li>
-<li>中介式<ul>
-<li>通过中介机器决定主备，主备机器均与中介机器链接</li>
-</ul>
-</li>
-<li>模拟式<ul>
-<li>备库通过模拟发送读写请求以获取主机的状态</li>
-</ul>
-</li>
-</ul>
-<h4 id="主主"><a href="#主主" class="headerlink" title="主主"></a>主主</h4><p>两个机器都是主机器，承担读写操作，数据双向复制。一般不用。弊端：<br>有些数据是不能双向复制的：比如库存数据</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/16/技术/从0开始学架构/CAP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AntoneJia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HEXO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/16/技术/从0开始学架构/CAP/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-16T09:40:10+08:00">
-                2018-09-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>问题</p>
+<p>对于换行:</p>
 <ol>
-<li><p>分别代表什么含义，尤其 P （分区容错）代表什么意思</p>
+<li>在逗号后面换行;</li>
+<li>在操作符前面换行;</li>
+<li>高级别换行好于低级别换行;</li>
+<li>新的一行应该与上一行同一级别表达式的开头处对齐;</li>
+<li>如果上述规则导致代码混乱或者代码被堆积到右侧,那么用8个空格的缩进代替。</li>
+</ol>
+</li>
+<li><p>【推荐】setter方法中,参数名称与类成员变量名称一致,this.成员名=参数名。在<br>getter/setter 方法中,不要增加业务逻辑,增加排查问题的难度。<br>反例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> Integer <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.data + <span class="number">100</span>;</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">this</span>.data - <span class="number">100</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>【强制】关于 hashCode 和 equals 的处理,遵循如下规则:</p>
+<ul>
+<li>只要重写equals,就必须重写hashCode。</li>
+<li>因为Set存储的是不重复的对象,依据hashCode和equals进行判断,所以Set存储的对象必须重 写这两个方法。</li>
+<li>如果自定义对象作为Map的键,那么必须重写hashCode和equals。</li>
+</ul>
 <blockquote>
-<p>网络分区：由于网络故障 导致 集群出现 多个独立的小分区，比如 n1和n2，之间网络不同。<br>分区容错指即使在出现这种情况下，系统仍然能继续运行</p>
+<p>说明:String 重写了 hashCode 和 equals 方法,所以我们可以非常愉快地使用 String 对象作为 key 来使用。</p>
 </blockquote>
 </li>
-<li><p>为什么基本上都是CP  和  AP ，一般不可能出现CA</p>
+<li><p>【强制】 ArrayList 的 subList 结果不可强转成 ArrayList,否则会抛出 ClassCastException 异 常,即 java.util.RandomAccessSubList cannot be cast to java.util.ArrayList。<br>说明:subList 返回的是 ArrayList 的内部类 SubList,并不是 ArrayList ,而是 ArrayList 的 一个视图,对于 SubList 子列表的所有操作最终会反映到原列表上。</p>
+</li>
+<li><p>【强制】使用集合转数组的方法,必须使用集合的 toArray(T[] array),传入的是类型完全一样的数 组,大小就是 list.size()。</p>
 <blockquote>
-<p>网络故障是不可避免的。如果选择了 CA 而放弃了 P，当出现网络故障时，为保障C，一般是禁止写入请求的，这样就导致系统在此场景下的不可用，与A相违背。</p>
+<p>说明:使用 toArray 带参方法,入参分配的数组空间不够大时,toArray 方法内部将重新分配内存空 间,并返回新数组地址;如果数组元素个数大于实际所需,下标为[ list.size() ] 的数组元素将被置 为 null,其它数组元素保持原值,因此最好将方法入参数组大小定义与集合元素个数一致。</p>
+</blockquote>
+<p>正例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;(<span class="number">2</span>);</span><br><span class="line">list.add(<span class="string">"guan"</span>);</span><br><span class="line">list.add(<span class="string">"bao"</span>);</span><br><span class="line">String[] array = <span class="keyword">new</span> String[list.size()];</span><br><span class="line">array = list.toArray(array);</span><br></pre></td></tr></table></figure>
+<p>反例:直接使用 toArray 无参方法存在问题,此方法返回值只能是 Object[]类,若强转其它类型数组将 出现 ClassCastException 错误。</p>
+</li>
+<li><p>【强制】使用工具类 Arrays.asList()把数组转换成集合时,不能使用其修改集合相关的方法,它的 add/remove/clear 方法会抛出 UnsupportedOperationException 异常。</p>
+<blockquote>
+<p>说明:asList 的返回对象是一个 Arrays 内部类,并没有实现集合的修改方法。Arrays.asList 体现 的是适配器模式,只是转换接口,后台的数据仍是数组。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] str = <span class="keyword">new</span> String[] &#123; <span class="string">"you"</span>, <span class="string">"wu"</span> &#125;;</span><br><span class="line">List list = Arrays.asList(str);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一种情况:list.add(“yangguanbao”); 运行时异常。</li>
+<li>第二种情况:str[0] = “gujin”; 那么 list.get(0)也会随之修改。</li>
+</ul>
+<blockquote>
+<p>怎么解？ 将Arrays.asList()得到的对象重新创建新的对象。List list = Arrays.asList(str);<br>ArrayList copiedList = new ArrayList&lt;&gt;(list);</p>
 </blockquote>
 </li>
-<li><p>CAP 与 ACID的区别</p>
+<li><p>【强制】不要在 foreach 循环里进行元素的 remove/add 操作。remove 元素请使用 Iterator 方式,<br>如果并发操作,需要对 Iterator 对象加锁。<br>正例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;String&gt; iterator = list.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">  String item = iterator.next(); <span class="keyword">if</span> (删除元素的条件) &#123;</span><br><span class="line">       iterator.remove();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>反例:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">     List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">     list.add(<span class="string">"1"</span>);</span><br><span class="line">     list.add(<span class="string">"2"</span>);</span><br><span class="line">     <span class="keyword">for</span> (String item : list) &#123;</span><br><span class="line">         <span class="keyword">if</span> (<span class="string">"1"</span>.equals(item)) &#123;</span><br><span class="line">             list.remove(item);</span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>完全不同，不用对比；ACID中的C是数据库的完整性</p>
+<p>说明:以上代码的执行结果肯定会出乎大家的意料,那么试一下把“1”换成“2”,会是同样的结果吗? 解读:参看《Java 编程思想》第四版第 11.13 Foreach 与迭代器。foreach 循环是调用实现了 java.lang.Iterable<t>接口的对象的 iterator()获得一个 Iterator 迭代对象,用这个迭代对象来遍 历。如果要对集合进行增删操作,都必须经过 Iterator,否则 Iterator 遍历时会乱。所以直接对集合进 行删除时,Iterator 会抛出 ConcurrentModificationException 异常。<br>在 ArrayList 类中,iterator()方法返回的是内部类 Itr 实例,Itr 对象里面有一个成员变量 expectedModCount(期望修改次数),AbstractList 里面有一个 modCount(修改次数),迭代时每次都 会判断两个修改次数是否相等,不等则抛出 ConcurrentModificationException 异常。</t></p>
+</blockquote>
+</li>
+<li><p>【强制】velocity 调用 POJO 类的属性时,建议直接使用属性名取值即可,模板引擎会自动按规范调用 POJO 的 getXxx(),如果是 boolean 基本数据类型变量(boolean 命名不需要加 is 前缀),会自动调 用 isXxx()方法。</p>
+<blockquote>
+<p>说明:注意如果是 Boolean 包装类对象,优先调用 getXxx()的方法。<br>解读:velocity 调用 POJO 类的属性时处理规则,注意布尔型基本数据类型和包装类对象之间的区别。</p>
+</blockquote>
+</li>
+<li><p>【推荐】单表行数超过500万行或者单表容量超过2GB,才推荐进行分库分表。</p>
+<blockquote>
+<p>说明:如果预计三年后的数据量根本达不到这个级别,请不要在创建表时就分库分表。</p>
+<p>解读:分库分表的优势:可以将压力分散到多张表和库满足互联网高并发读的需求(适合业务数据实时性 要求不会太高,跟钱有关的核心数据一定要严格考虑延时带来的后果),安全性更高,某个功能出现故障 不影响整体业务。依靠普通的 PC SERVER 架构堆机器,屌丝流逆袭小型机上的 Oracle。</p>
+<p>分库分表的缺点:许多聚集操作变得非常困难(group by,max,min,count),应用需要额外的程序来控 制数据路由,要仔细考虑跨库事务控制(JTA 慢,最大努力一段式提交要考虑失败手工回滚策略),基于 全局数据视图的各种系统开发都会更复杂,另外在数据迁移和升级过程中也加大了难度。所以除非数据量 很大,否则没有必要分库分表。</p>
+</blockquote>
+</li>
+<li><p>【强制】超过三个表禁止 join。需要 join 的字段,数据类型必须绝对一致;多表关联查询时,保证被关 联的字段需要有索引。</p>
+<blockquote>
+<p>说明:即使双表 join 也要注意表索引、SQL 性能。</p>
+<p>解读:数据类型为何要一致?表连接是十分消耗性能的动作。数据类型的一致能大量减少数据类型转换带 来的性能消耗。举例:两表日期作为连接关键字,有的同学喜欢用字符串,有的喜欢用日期类型。在做表 连接时,将带来巨大的性能消耗,其次索引问题也将浮现,索引对于数据类型转换是十分敏感的,曾经就 有由于字符串没加单引号导致没走索引继而导致锁争用问题,load 飙升。 被关联的字段为何必须要有索引?Mysql 的连接只有 NEST LOOP 一种,类似于开发同学常见的嵌套循环, 两个 FOR 循环这种。外 FOR 循环,在 Mysql 里叫驱动表;内 FOR 循环,在 Mysql 里叫被驱动表。在连接时 候 Mysql 把外循环(驱动表)中每一个值代入到内循环(被驱动表中遍历),即内循环要被检索 N 次,N 为 驱动表的行数(可能会有些 where 条件过滤一部分数据)。如果内循环(被驱动表)没有索引,也就是说 要全表扫描 N 次。</p>
+</blockquote>
+</li>
+<li><p>【强制】页面搜索严禁左模糊或者全模糊,如果需要请走搜索引擎来解决。</p>
+<blockquote>
+<p>说明:索引文件具有 B-Tree 的最左前缀匹配特性,如果左边的值未确定,那么无法使用此索引。 解读:like ‘139%’这种可能走索引,like ‘%1234%’和 like ‘%2345’这种一定不走索引。</p>
+</blockquote>
+</li>
+<li><p>【推荐】如果有 order by 的场景,请注意利用索引的有序性。order by 最后的字段是组合索引的一部 分,并且放在索引组合顺序的最后,避免出现 file_sort 的情况,影响查询性能。<br>正例:where a=? and b=? order by c; 索引:a_b_c 反例:索引中有范围查找,那么索引有序性无法利用,如:WHERE a&gt;10 ORDER BY b; 索引 a_b 无法 排序。</p>
+<blockquote>
+<p>解读:假设索引列顺序为(城市,年龄,收入),索引类似下图的逻辑<br>北京      上海    广州<br>/   \     /  \    /  \<br>20   25   20  25  20  25<br>|    |    |   |   |  |<br>收入 收入 收入 收入 收入 收入<br>因为索引是有序的,所以收入应该是排序好的。当提取这张表中北京人的收入从小到大结果时,这个索 引就无法被利用,为什么呢?因为他是按照北京-20 岁和北京-25 岁这个条件分别排序的。并没有按照北 京人这个单独条件来排序,自然也不可能利用到索引。解决办法是重建一个索引(城市,收入),这样 就可以利用索引来检索,各个城市收入的排序结果了。同理,范围查找也是一样,由于前面的列范围被 模糊了,而索引只能得到特定条件下的排序结果,所以无法使用索引。</p>
+</blockquote>
+</li>
+<li><p>【推荐】利用延迟关联或者子查询优化超多分页场景。<br>说明:MySQL 并不是跳过 offset 行,而是取 offset+N 行,然后返回放弃前 offset 行,返回 N 行,那 当 offset 特别大的时候,效率就非常的低下,要么控制返回的总页数,要么对超过特定阈值的页数进行 SQL 改写。</p>
+<p>正例:先快速定位需要获取的 id 段,然后再关联:<br>SELECT a.* FROM 表 1 a, (select id from 表 1 where 条件 LIMIT 100000,20 ) b where a.id=b.id</p>
+<blockquote>
+<p>解读:正例的思路是利用表的覆盖索引(参考第 6 条)来加速分页的 ID 列表查询,然后再进行表关联查询出结果集。</p>
+</blockquote>
+</li>
+<li><p>【强制】sql.xml配置参数使用:#{},#param#不要使用${}此种方式容易出现SQL注入。</p>
+<blockquote>
+<p>解读:在 iBatis 或 MyBatis 里面,“#”占位符底层会使用 PreparedStatement 来实现,“$”占位符只 是在 SQL 上进行字符串替换。而字符串拼接 SQL 是 SQL 注入的问题根源所在。</p>
 </blockquote>
 </li>
 </ol>
-<hr>
-<h3 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h3><p>CAP（C：一致性；A：可用性；P： 分区容忍性）是分布式系统的架构设计理论；</p>
-<p>分布式系统的设计原则：横向可扩展和高可用；横向可扩展解决单机性能瓶颈问题，高可用解决单机故障问题；<strong>这里的可用性就是指A</strong>；</p>
-<p>为保障可用性，一个分布式系统由多个节点组成，每个节点拥有相同的数据，为了达到这个效果，每个节点收到写请求后需要将数据同步到其他节点，以保证数据的一致性，<strong>这里的一致性就是指C</strong>，用户访问系统时可以读到最近写入的数据；</p>
-<p>由于网络必然有延迟，数据同步不可能完全实时，绝对的C是不可能的；</p>
-<p>网络故障是不可避免的，出现网络分区时，多个节点数据是不一致的，但可以选择对用户表现出一致性，代价是牺牲可用性，有问题的数据节点收到请求直接返回不可用。也可以选择可用性，不同的节点返回不同的数据，就牺牲了一致性。<strong>这里的选择就是P</strong></p>
-<h3 id="BASE"><a href="#BASE" class="headerlink" title="BASE"></a>BASE</h3><ol>
-<li>基本可用（Basically Available）<ul>
-<li>保证核心功能可用</li>
-</ul>
-</li>
-<li>软状态（Soft State，中间状态）<ul>
-<li>允许存在中间状态，中间状态数据不一致</li>
-</ul>
-</li>
-<li>最终一致性（Eventual Consistency）<ul>
-<li>经过一定时间后，最终一致</li>
-</ul>
-</li>
-</ol>
-<p><strong>BASE 是 CAP理论的眼神，严格意义上讲是CAP中AP的延伸，保证最终一致</strong></p>
 
           
         
@@ -1054,7 +821,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/08/技术/从0开始学架构/负载均衡/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/26/how-to-use-hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AntoneJia">
@@ -1073,7 +840,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/08/技术/从0开始学架构/负载均衡/" itemprop="url">Unbenannt</a></h1>
+                <a class="post-title-link" href="/2017/11/26/how-to-use-hexo/" itemprop="url">how-to-use-hexo</a></h1>
         
 
         <div class="post-meta">
@@ -1083,10 +850,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-08T23:44:33+08:00">
-                2018-09-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-26T16:42:07+08:00">
+                2017-11-26
               </time>
             
 
@@ -1125,669 +892,16 @@
       
         
           
-            <h2 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h2><p>什么是F5</p>
-<blockquote>
-<p> 负载均衡硬件设备。F5也是个公司名；</p>
-</blockquote>
-<p>4层负载和7层负载均衡？</p>
-<blockquote>
-<p>四层和七层的划分：根据负载均衡所作用在 OSI 模型的位置不同来划分</p>
-<ul>
-<li>四层负载均衡：tcp：在三层负载均衡的基础上,用ip+port接收请求,再转发到对应的机器。</li>
-<li>七层负载均衡(http)：根据虚拟的url或IP,主机名接收请求,再转向相应的处理服务器。<br><a href="https://www.jianshu.com/p/fa937b8e6712" target="_blank" rel="noopener">https://www.jianshu.com/p/fa937b8e6712</a></li>
-</ul>
-</blockquote>
-<p>LVS？</p>
-<blockquote>
-<p>Nginx/LVS/HAProxy是目前使用最广泛的三种负载均衡软件。LVS：使用Linux内核集群实现一个高性能、高可用的负载均衡服务器，</p>
-<p>如果是中小型的Web应用，比如日PV小于1000万，用Nginx就完全可以了；如果机器不少，可以用DNS轮询，LVS所耗费的机器还是比较多的；大型网站或重要的服务，且服务器比较多时，可以考虑用LVS。</p>
-</blockquote>
-<h2 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h2><p>分类：</p>
-<ul>
-<li>任务平分：无脑平均分（如轮询)</li>
-<li>负载均衡：根据系统负载来</li>
-<li>性能最优：先分配给最快的响应时间的机器</li>
-<li>hash：根据一定的ID：seesion ID / userID</li>
-</ul>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>微信红包的并发架构，应该采用什么样的负载均衡？</p>
-<blockquote>
-<p>主要两个历程：发红包 和 抢红包</p>
-<ul>
-<li>发红包：往DB插一条红包记录；</li>
-<li>抢红包：插入一条秒杀流水并更新库存</li>
-</ul>
-</blockquote>
-<p>发红包：直接轮询算法达到服务器就好了；<br>抢红包：按红包ID hash到同一台机器，所有抢请求放入先进先出队列，保证先来的先得，后来的后得</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/08/目标/技术学习目标/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AntoneJia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HEXO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/08/目标/技术学习目标/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-08T23:20:51+08:00">
-                2018-09-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>11.9号前 看完 &lt;&lt;从0开始学架构&gt;&gt;</p>
-<ul>
-<li>主要文章：2天一周的节奏（9.9号开始）</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/08/技术/从0开始学架构/单服务器高性能模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AntoneJia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HEXO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/08/技术/从0开始学架构/单服务器高性能模式/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-08T21:19:26+08:00">
-                2018-09-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Reactor-和-Proactor"><a href="#Reactor-和-Proactor" class="headerlink" title="Reactor 和 Proactor"></a>Reactor 和 Proactor</h2><h3 id="什么是阻塞同步-非阻塞同步-非阻塞异步"><a href="#什么是阻塞同步-非阻塞同步-非阻塞异步" class="headerlink" title="什么是阻塞同步 / 非阻塞同步 / 非阻塞异步"></a>什么是阻塞同步 / 非阻塞同步 / 非阻塞异步</h3><ul>
-<li>IO操作分为两个步骤：1. 等待数据准备好（读取到内核缓存） 2. 将数据从内核读取到用户空间（进程空间）；一般来说步骤1花费的时间远远大于步骤2。<ul>
-<li>阻塞同步: 1上阻塞 2上也阻塞</li>
-<li>非阻塞同步：1上阻塞，2上不阻塞</li>
-<li>非阻塞异步：1上不阻塞 2上也不阻塞</li>
-</ul>
-</li>
-</ul>
-<h3 id="什么是-Reactor-Proactor"><a href="#什么是-Reactor-Proactor" class="headerlink" title="什么是 Reactor / Proactor"></a>什么是 Reactor / Proactor</h3><p>这俩个东西解的是啥命题：服务器采用的并发模型，即服务器如何管理连接，以及服务器如何处理请求</p>
-<p>以上说的都跟操作系统的IO模型以及进程模型有关</p>
-<ul>
-<li>IO模型：阻塞 非阻塞 同步 异步</li>
-<li>进程模型：单进程 多进程 多线程</li>
-</ul>
-<h4 id="Reactor"><a href="#Reactor" class="headerlink" title="Reactor"></a>Reactor</h4><p>PPC（Process Per Connection）模式的缺点：每个连接一个进程，连接结束后进程销毁，浪费资源。解决-&gt; : 资源复用。不再为每个连接分配进程，采用<strong>进程池</strong>，将连接分配给进程，一个进程可以处理多个连接。</p>
-<p>引入<strong>资源池</strong>后，一个新的问题：进程怎么高效的处理多个连接的业务。一般，连接的处理过程是：read -&gt; 业务处理 -&gt; write；在一个进程管理多个连接的场景下，如果进程阻塞在一个连接的read上，即使别的连接有数据可读，也不可能处理别的请求，显然是不合理的。所以<strong>解决方式是： 只有连接上有数据的时候进程才去处理，这就是IO多路复用技术</strong>的来源</p>
-<p>IO多路复用（处理请求的方式） + 资源池（管理连接的方式） = Reactor。 该模式核心实体：Reactor和资源池，模式：</p>
-<ul>
-<li><p>单Reactor单进程</p>
-<blockquote>
-<p>Redis是此模式。此模式适用于业务处理非常快的场景</p>
-</blockquote>
-</li>
-<li><p>单Reactor多线程</p>
-</li>
-<li>多Reactor多进程/线程</li>
-</ul>
-<p><strong> Reactor是 非阻塞同步的，Proactor是非阻塞异步的；Reactor可以理解为“有事件时，我通知你，你来处理；Proactor是来了事件我来处理，处理完了通知你”。“我”是操作系统内核，事件是：有新连接，有数据可读，有数据可写，“你”是我们的程序代码</strong></p>
-<blockquote>
-<p>NIO 是 Reactor模式；AIO是 Proactor模式</p>
-<p>打个比方，餐厅点菜：</p>
-<ul>
-<li>柜台点了菜后，在那儿等着。就是阻塞同步；</li>
-<li>柜台点了菜后，回到餐桌后，菜好了后，通知你来取。就是Reactor模式；（有事件时，我通知你，你来处理）</li>
-<li>柜台点了菜后，回到餐桌后，该干嘛干嘛，菜好了后，给你端上来，你只负责吃就好了，就是Proactor模式（来了事件我来处理，处理完了通知你，“吃”就是业务代码）</li>
-</ul>
-</blockquote>
-<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>消息中间件是什么模式</p>
-<blockquote>
-<p>单Reactor 多线程；中间件一般连接数固定，请求量较大；单reactor来管理就好了，多线程处理请求</p>
-</blockquote>
-<p>Redis是什么模式</p>
-<blockquote>
-<p>单Reactor 单进程/线程</p>
-</blockquote>
-<p>什么是 select / epoll</p>
-<blockquote>
-<p>可以这么理解：select / epoll是IO多路复用的具体实现，都是同步IO。<br><a href="https://www.cnblogs.com/jeakeven/p/5435916.html" target="_blank" rel="noopener">https://www.cnblogs.com/jeakeven/p/5435916.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/26/技术/从0开始学架构/高性能缓存架构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AntoneJia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HEXO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/26/技术/从0开始学架构/高性能缓存架构/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-26T14:41:06+08:00">
-                2018-08-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="为什么要使用缓存"><a href="#为什么要使用缓存" class="headerlink" title="为什么要使用缓存"></a>为什么要使用缓存</h3><p>典型场景</p>
-<ol>
-<li><p>读多写少的场景</p>
-<blockquote>
-<p>memorycache 单台机器 QPS能达到 50000</p>
-</blockquote>
-</li>
-<li><p>需要复杂计算后得出数据，存储系统无能为力</p>
-<blockquote>
-<p>如计算论坛实时在线人数</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="使用缓存常见的问题和解法"><a href="#使用缓存常见的问题和解法" class="headerlink" title="使用缓存常见的问题和解法"></a>使用缓存常见的问题和解法</h3><h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><ol>
-<li>读取不存在的key<blockquote>
-<p>key不存在，当高并发请求，所有请求均打到DB</p>
-</blockquote>
-</li>
-</ol>
-<p>解法：不存在的key，存放一个空值</p>
-<ol>
-<li>缓存的生成耗时较长<blockquote>
-<p>典型场景：商品分页数据，后面的页数访问较少，缓存容易失效。此时高并发的请求均打到DB</p>
-</blockquote>
-</li>
-</ol>
-<p>解法：并没有比较好的解法，做好监控</p>
-<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><blockquote>
-<p>雪崩指 缓存失效后 引起系统性能急剧下降的情况</p>
-</blockquote>
-<p>但缓存失效后，对于业务量较大的系统，大量的高并发请求到缓存，任意一个线程同时去请求到DB（都不知道其他线程已经有在请求DB，并更新缓存），导致DB压力较大，一连串反应，影响系统稳定性</p>
-<p>解法：</p>
-<ol>
-<li>更新锁<br>采用分布式锁，保障只有一个线程去请求到DB并更新缓存。</li>
-</ol>
-<p><strong>分布式锁的实现方式要研究一下</strong> <a href="https://www.cnblogs.com/austinspark-jessylu/p/8043726.html" target="_blank" rel="noopener">https://www.cnblogs.com/austinspark-jessylu/p/8043726.html</a></p>
-<ol>
-<li><p>后台定时更新<br>所有请求都不达到DB，而是通过定时任务定时更新缓存，防止失效。</p>
-<ul>
-<li>问题：定时任务更新不及时导致数据不一致怎么办？<blockquote>
-<p>对于需要即时数据一致的情况，可以在数据更新后 消息通知触发定时任务运行；</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ol>
-<p>其他解法：</p>
-<p>双key策略：要缓存的key的过期时间为t，key1没有过期时间，当缓存读取不到key的内容时就返回key1的内容，然后触发一个事件同时更新key和key1</p>
-<h4 id="缓存穿透和雪崩什么区别"><a href="#缓存穿透和雪崩什么区别" class="headerlink" title="缓存穿透和雪崩什么区别"></a>缓存穿透和雪崩什么区别</h4><p>我的理解：</p>
-<p>穿透是表述了现象：缓存没生效，达到了DB；雪崩更强调结果，导致系统一连串稳定性问题；<br>穿透可能会导致雪崩</p>
-<h4 id="缓存热点"><a href="#缓存热点" class="headerlink" title="缓存热点"></a>缓存热点</h4><p>对单个key 的访问过大，导致单机问题；</p>
-<p>解法：</p>
-<ul>
-<li>冗余存储，分散查询。比如缓存key为key1，冗余存储多份数据 key1, key2, key3，存储value相同；上层查询策略上采用随机路由查询；</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/12/技术/从0开始学架构/NoSQL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="AntoneJia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HEXO">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/12/技术/从0开始学架构/NoSQL/" itemprop="url">Unbenannt</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-12T21:49:12+08:00">
-                2018-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>为什么要有NoSQL，关系数据库有什么问题</p>
-<ol>
-<li>不能存储复杂数据结构（所以有了K-V数据库：Redis）</li>
-<li>scheme不好扩展（-&gt; 文档数据库）</li>
-<li>大数据场景下I/O较高（-&gt; 列式存储 Hbase）<blockquote>
-<p>即使读取某列数据，关系数据库也要将整行数据读取到内存</p>
-</blockquote>
-</li>
-<li>全文搜索能力较弱（ES，luence）</li>
-</ol>
-<h2 id="K-V存储"><a href="#K-V存储" class="headerlink" title="K-V存储"></a>K-V存储</h2><p>优点：复杂数据结构的存储和读取简单：如读取队列第一个元素并出队列<br>缺点：不支持完整的ACID；Redis支持事务，但只支持I和C，不支持A和D</p>
-<h2 id="文档数据库"><a href="#文档数据库" class="headerlink" title="文档数据库"></a>文档数据库</h2><p>优点：scheme非常容易扩展，并且新增字段对老数据也无影响，可以很容易的存储复杂数据<br>缺点：MongoDB不支持事务；无法实现join操作（要查两次）</p>
-<h2 id="列式存储"><a href="#列式存储" class="headerlink" title="列式存储"></a>列式存储</h2><p>关系数据库按照行来存取数据的好处：</p>
-<ul>
-<li>读取多列时效率高：列都是按行存储在一起的，一次磁盘操作就能把所有需要的列读取出来</li>
-<li>存储时，能够一次性完成一行中多列的写操作，保证了针对于行数据写操作的原子性和一致性。否则如果采用列存储，可能出现某些列写成功了，某些列写失败了，导致数据不一致</li>
-</ul>
-<p>列式存储：<br>优势：</p>
-<ul>
-<li>大数据量的统计操作场景下，节省IO效率，只需读取单列。（整列数据是存储在一块的）</li>
-<li>压缩比好。单个列的数据相似度较高</li>
-</ul>
-<p>劣势：</p>
-<ul>
-<li>频繁的更新多列时，对磁盘是随机写，效率低；（不同列存储不连续）</li>
-</ul>
-<h2 id="全文搜索"><a href="#全文搜索" class="headerlink" title="全文搜索"></a>全文搜索</h2><ul>
-<li>原理：倒排索引</li>
-<li>为什么叫倒排索引？ 单词到文档的索引；（正排索引指文档到单词的索引；比如根据文章标题查询展示文章内容）</li>
-</ul>
-<p>全文搜索引擎支持 关系数据库数据 的搜索，怎么做？</p>
-<blockquote>
-<p>将RDB数据 -&gt; JSON文档 -&gt; 导入 ES</p>
-</blockquote>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
-<li><p>文档数据库(如MongoDB)和ES有什么区别，他们都没有scheme的约束</p>
-<blockquote>
-<p>文档数据库定位于存储和访问，ES定位于搜索。但目前差别不是很大，因为系统边界的扩充，就像MongoDB要支持ACID，mysql要支持文档存储</p>
-</blockquote>
-</li>
-<li><p>跨库操作如何保证最终一致性 / 写mysql，同时写ES，如何保证一致性？</p>
-<blockquote>
-<p>土的方法是 记录操作日志 + 定时校验；牛逼的是 采用分布式一致性算法</p>
-</blockquote>
-</li>
-</ol>
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">对于你而言，发布一篇文章一般只需两步：</span><br><span class="line">1. hexo generate</span><br><span class="line">2. hexo deploy</span><br></pre></td></tr></table></figure>
+<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"></span><br><span class="line">简写：hexo g</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line"></span><br><span class="line">简写：hexo g</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -1827,7 +941,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 
@@ -1873,8 +987,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">78</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -1885,7 +999,7 @@
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
                 <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">categories</span>
               </a>
             </div>
           
@@ -1895,8 +1009,8 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">19</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1946,7 +1060,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
